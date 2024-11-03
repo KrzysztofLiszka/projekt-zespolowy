@@ -1,4 +1,4 @@
-namespace PROJEKT_ZESPOLOWY_API
+namespace PROJEKT_ZESPOLOWY_BACKEND
 {
     public class WeatherForecast
     {
