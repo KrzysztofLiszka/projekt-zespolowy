@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PROJEKT_ZESPOLOWY_BACKEND.Data;
+using PROJEKT_ZESPOLOWY_BACKEND.Profiles;
+using PROJEKT_ZESPOLOWY_BACKEND.Services;
 using PROJEKT_ZESPOLOWY_BACKEND.SqlRepository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,11 @@ builder.Services.AddCors(options =>
 
 // Add services to the container.
 builder.Services.AddScoped<ISqlRepository, SqlRepository>();
+builder.Services.AddScoped<IWorkplaceService, WorkplaceService>();
+
+
+builder.Services.AddAutoMapper(typeof(WorkplaceProfile));
+
 
 builder.Services.AddControllers();
 
