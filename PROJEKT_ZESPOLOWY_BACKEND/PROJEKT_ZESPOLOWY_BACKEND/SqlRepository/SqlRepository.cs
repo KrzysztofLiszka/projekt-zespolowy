@@ -1,16 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PROJEKT_ZESPOLOWY_BACKEND.Data;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
+using PROJEKT_ZESPOLOWY_BACKEND.Services;
 
 namespace PROJEKT_ZESPOLOWY_BACKEND.SqlRepository
 {
     public class SqlRepository : ISqlRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly ICurrentUserService _currentUserService;
 
-        public SqlRepository(ApplicationDbContext context)
+        public SqlRepository(ApplicationDbContext context, ICurrentUserService currentUserService)
         {
             _context = context;
+            _currentUserService = currentUserService;
         }
 
         public async Task<List<T>> GetAllAsync<T>() where T : BaseEntity
@@ -35,6 +38,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.SqlRepository
         }
         public async Task AddAsync<T>(T entity) where T : BaseEntity
         {
+            entity.CreatedBy = _currentUserService.GetCurrentUserId();
             entity.CreatedAt = DateTime.UtcNow;
             entity.LastUpdatedAt = DateTime.UtcNow;
             await _context.Set<T>().AddAsync(entity);
