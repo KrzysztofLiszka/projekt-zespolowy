@@ -9,5 +9,6 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Data
         {}
 
         public DbSet<Workplace> Workplaces { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
     }
 }
