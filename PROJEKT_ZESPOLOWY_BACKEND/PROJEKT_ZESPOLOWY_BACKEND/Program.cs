@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PROJEKT_ZESPOLOWY_BACKEND.Data;
+using PROJEKT_ZESPOLOWY_BACKEND.SqlRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddCors(options =>
 });
 
 // Add services to the container.
+builder.Services.AddScoped<ISqlRepository, SqlRepository>();
 
 builder.Services.AddControllers();
 
