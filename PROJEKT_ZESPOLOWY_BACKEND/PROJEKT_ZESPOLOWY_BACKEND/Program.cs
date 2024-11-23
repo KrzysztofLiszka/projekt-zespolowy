@@ -20,9 +20,10 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 builder.Services.AddScoped<ISqlRepository, SqlRepository>();
 builder.Services.AddScoped<IWorkplaceService, WorkplaceService>();
-
+builder.Services.AddScoped<IAssignmentService, AssignmentService>();
 
 builder.Services.AddAutoMapper(typeof(WorkplaceProfile));
+builder.Services.AddAutoMapper(typeof(AssignmentProfile));
 
 
 builder.Services.AddControllers();
