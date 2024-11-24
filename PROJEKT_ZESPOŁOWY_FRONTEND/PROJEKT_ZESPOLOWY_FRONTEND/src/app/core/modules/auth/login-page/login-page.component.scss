@@ -23,7 +23,7 @@
 
         .form-container {
             background-color: white;
-            height: 60%;
+            height: 350px;
             width: 60%;
             display: flex;
             justify-content: flex-start;
@@ -69,6 +69,12 @@
                 }
 
             }
+        }
+
+        .link-row {
+            font-size: 12px;
+            width: 80%;
+            text-align: right;
         }
     }
 }
