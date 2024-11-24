@@ -1,0 +1,13 @@
+.app-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+
+    .content {
+        width: 100vw;
+        height: 100vh;
+        background-color: #95B0B1;
+        overflow: hidden;
+    }
+}
