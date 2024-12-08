@@ -1,27 +1,24 @@
-<div class="container">
-    <div class="left-side">
-
-    </div>
-    <div class="right-side">
-        <div class="form-container">
-            <div class="header">
-                <p>Login to system</p>
+<div class="main-container">
+    <div class="form-container">
+        <div class="header">
+            <p>ZALOGUJ SIĘ DO SYSTEMU</p>
+        </div>
+        <form class="form-wrapper">
+            <div class="form-row">
+                <p class="name">EMAIL</p>
+                <input />
             </div>
-            <form class="form-wrapper">
-                <div class="form-row">
-                    <p>E-mail</p>
-                    <input />
-                </div>
-                <div class="form-row">
-                    <p>Password</p>
-                    <input />
-                </div>
-                <div class="button-row">
-                    <button>Submit</button>
-                </div>
-            </form>
-            <div class="link-row">
-                <a href="/register">Register here!</a>
+            <div class="form-row">
+                <p class="name">HASŁO</p>
+                <input type="password" />
+            </div>
+        </form>
+        <div class="buttons">
+            <div class="btn-container">
+                <button class="submit" (click)="login()">ZALOGUJ</button>
+            </div>
+            <div>
+                <a class="link" href="/register">Nie masz konta? Zarejestruj się</a>
             </div>
         </div>
     </div>

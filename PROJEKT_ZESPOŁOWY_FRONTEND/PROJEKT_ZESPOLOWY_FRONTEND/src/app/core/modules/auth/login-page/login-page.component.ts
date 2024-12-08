@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class LoginPageComponent {
 
+    //TODO: logic for login
+    login(): void {
+        console.log("Logowanie");
+    }
+
 }
