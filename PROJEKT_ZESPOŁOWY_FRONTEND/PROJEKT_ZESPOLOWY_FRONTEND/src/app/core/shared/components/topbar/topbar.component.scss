@@ -1,0 +1,39 @@
+@use '../../../../variables.scss';
+
+.container {
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    justify-content: flex-end;
+    border: solid 2px white;
+    background-color: variables.$primary-black-color;
+
+    .buttons-container {
+        width: 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 5%;
+    }
+
+    button {
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button i {
+        font-size: 28px;
+        color: white;
+    }
+
+    button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
