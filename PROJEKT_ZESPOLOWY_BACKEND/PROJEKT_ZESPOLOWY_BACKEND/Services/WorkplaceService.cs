@@ -45,10 +45,5 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
             var workplacesTableDto = _mapper.Map<List<WorkplaceTableDto>>(workplaces);
             return workplacesTableDto;
         }
-
-        public Task JoinWorkplace()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
