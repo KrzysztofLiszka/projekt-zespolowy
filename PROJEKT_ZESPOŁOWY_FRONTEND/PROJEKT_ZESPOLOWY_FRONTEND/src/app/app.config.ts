@@ -5,12 +5,16 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { TokenInterceptor } from './core/interceptors/token';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideZoneChangeDetection({ eventCoalescing: true }),
         provideRouter(routes),
         provideClientHydration(),
-        provideHttpClient(withInterceptors([TokenInterceptor]))
+        provideHttpClient(withInterceptors([TokenInterceptor])),
+        provideToastr(),
+        provideAnimations(),
     ]
 };

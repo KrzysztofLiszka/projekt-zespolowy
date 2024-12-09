@@ -14,6 +14,7 @@ export class TopbarComponent {
 
   logout(): void {
     localStorage.removeItem("tokenPZ");
+    localStorage.removeItem("username");
     this.router.navigateByUrl("/login");
   }
 }

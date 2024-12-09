@@ -26,12 +26,20 @@ export class LoginPageComponent implements OnDestroy {
     }
 
     login(): void {
-        this.subscription.add(this.authService.loginToSystem(this.formGroup.value).subscribe(res => {
-            localStorage.setItem('tokenPZ', res.token);
-            this.router.navigateByUrl("/home").then(() => {
-                window.location.reload();
-            });
-        }));
+        this.subscription.add(
+            this.authService.loginToSystem(this.formGroup.value).subscribe({
+                next: (res) => {
+                    localStorage.setItem('tokenPZ', res.token);
+                    localStorage.setItem('username', res.username);
+                    this.router.navigateByUrl('/home').then(() => {
+                        window.location.reload();
+                    });
+                },
+                error: () => {
+                    this.toastr.error('Nieprawidłowy login lub hasło!', "BŁĄD");
+                },
+            })
+        );
     }
 
     goToRegisterPage(): void {
