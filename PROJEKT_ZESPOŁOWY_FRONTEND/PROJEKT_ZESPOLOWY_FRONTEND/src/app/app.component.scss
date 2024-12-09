@@ -7,23 +7,31 @@
 
     .topbar {
         height: 5vh;
-        width: 100vh;
+        width: 100%;
     }
 
     .main-content {
         display: flex;
         flex-direction: row;
-        height: 95vh;
-        width: 100vw;
+        height: calc(100vh - 5vh);
+        width: 100%;
+
+        &.no-topbar {
+            height: 100vh;
+        }
 
         .sidebar {
             width: 15vw;
-            height: 95vh;
+            height: 100%;
         }
 
         .content {
             width: 85vw;
-            height: 95vh;
+            height: 100%;
+
+            &.full-content {
+                width: 100%;
+            }
         }
     }
 }
