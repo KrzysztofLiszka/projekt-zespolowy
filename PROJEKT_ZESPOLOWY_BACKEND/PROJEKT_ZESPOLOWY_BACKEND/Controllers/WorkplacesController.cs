@@ -17,6 +17,13 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             _workplaceService = workplaceService;
         }
 
+        [HttpPost("join")]
+        public async Task<IActionResult> JoinWorkplace([FromBody] Guid workplaceUuid)
+        {
+            await _workplaceService.JoinWorkplace(workplaceUuid);
+            return Ok("Joined workplace successfully.");
+        }
+
         [HttpPost("add")]
         public async Task<IActionResult> AddNewWorkplace([FromBody] NewWorkplaceDto workplace)
         {

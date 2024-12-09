@@ -8,5 +8,6 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
         Task EditWorkplace(EditWorkplaceDto workplace);
         Task<List<WorkplaceTableDto>> GetWorkplaces();
         Task DeleteWorkplace(Guid uuid);
+        Task JoinWorkplace(Guid workplaceUuid);
     }
 }

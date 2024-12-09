@@ -1,25 +1,17 @@
 <div class="main-container">
-    <div class="form-container">
-        <div class="header">
-            <p>ZALOGUJ SIĘ DO SYSTEMU</p>
+    <form class="form-container" [formGroup]="formGroup">
+        <p class="form-header">ZALOGUJ SIĘ DO SYSTEMU</p>
+        <p class="login-input-header">EMAIL</p>
+        <div class="center-elements-inside">
+            <input type="email" formControlName="email">
         </div>
-        <form class="form-wrapper">
-            <div class="form-row">
-                <p class="name">EMAIL</p>
-                <input />
-            </div>
-            <div class="form-row">
-                <p class="name">HASŁO</p>
-                <input type="password" />
-            </div>
-        </form>
-        <div class="buttons">
-            <div class="btn-container">
-                <button class="submit" (click)="login()">ZALOGUJ</button>
-            </div>
-            <div>
-                <a class="link" href="/register">Nie masz konta? Zarejestruj się</a>
-            </div>
+        <p class="login-input-header">HASŁO</p>
+        <div class="center-elements-inside">
+            <input type="password" formControlName="password">
         </div>
-    </div>
+        <div class="center-elements-inside">
+            <button (click)="login()">ZALOGUJ</button>
+        </div>
+        <p class="register-link" (click)="goToRegisterPage()">Nie masz konta? Zarejestruj się</p>
+    </form>
 </div>

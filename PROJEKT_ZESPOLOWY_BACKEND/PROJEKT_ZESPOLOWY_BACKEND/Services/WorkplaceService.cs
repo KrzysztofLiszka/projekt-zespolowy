@@ -10,11 +10,22 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
     {
         private readonly ISqlRepository _sqlRepository;
         private readonly IMapper _mapper;
+        private readonly ICurrentUserService _currentUserService;
 
-        public WorkplaceService(ISqlRepository sqlRepository, IMapper mapper)
+        public WorkplaceService(ISqlRepository sqlRepository, IMapper mapper, ICurrentUserService currentUserService)
         {
             _sqlRepository = sqlRepository;
             _mapper = mapper;
+            _currentUserService = currentUserService;
+        }
+
+        public async Task JoinWorkplace(Guid workplaceUuid)
+        {
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await _sqlRepository.GetAsync<User>(userId);
+            if (user == null) return;
+            user.WorkplaceUuid = workplaceUuid;
+            await _sqlRepository.UpdateAsync(user);
         }
 
         public async Task AddNewWorkplace(NewWorkplaceDto workplace)
