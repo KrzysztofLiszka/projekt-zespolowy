@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
     selector: 'app-register-page',
@@ -10,10 +11,11 @@ import { Router } from '@angular/router';
 export class RegisterPageComponent {
     formGroup: FormGroup;
 
-    constructor(private fb: FormBuilder, private router: Router) {
+    constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
         this.formGroup = this.fb.group({
             email: ["", Validators.email],
-            login: [""],
+            name: [""],
+            surname: [""],
             password: [""],
         });
     }
@@ -23,5 +25,8 @@ export class RegisterPageComponent {
     }
 
     registerUser(): void {
+        this.authService.registerToTheSystem(this.formGroup.value as any).subscribe(response => {
+            this.router.navigateByUrl("/login");
+        });
     }
 }
