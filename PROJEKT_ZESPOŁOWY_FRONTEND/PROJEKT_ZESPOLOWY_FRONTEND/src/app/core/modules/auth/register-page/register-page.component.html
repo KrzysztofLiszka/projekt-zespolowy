@@ -1,33 +1,21 @@
-<div class="container">
-    <div class="left-side">
-        <div class="form-container">
-            <div class="header">
-                <p>Register</p>
-            </div>
-            <form class="form-wrapper">
-                <div class="form-row">
-                    <p>Name</p>
-                    <input />
-                </div>
-                <div class="form-row">
-                    <p>Surname</p>
-                    <input />
-                </div>
-                <div class="form-row">
-                    <p>E-mail</p>
-                    <input />
-                </div>
-                <div class="form-row">
-                    <p type="password">Password</p>
-                    <input />
-                </div>
-                <div class="button-row">
-                    <button>Submit</button>
-                </div>
-            </form>
+<div class="main-container">
+    <form class="form-container" [formGroup]="formGroup">
+        <p class="form-header">ZAREJESTRUJ SIĘ W SYSTEMIE</p>
+        <p class="login-input-header">EMAIL</p>
+        <div class="center-elements-inside">
+            <input formControlName="email">
         </div>
-    </div>
-    <div class="right-side">
-
-    </div>
+        <p class="login-input-header">LOGIN</p>
+        <div class="center-elements-inside">
+            <input formControlName="login">
+        </div>
+        <p class="login-input-header">HASŁO</p>
+        <div class="center-elements-inside">
+            <input type="password" formControlName="password">
+        </div>
+        <div class="center-elements-inside">
+            <button (click)="registerUser()">ZAREJESTRUJ SIĘ</button>
+        </div>
+        <p class="login-link" (click)="goToLoginPage()">Masz już konto? Zaloguj się</p>
+    </form>
 </div>
