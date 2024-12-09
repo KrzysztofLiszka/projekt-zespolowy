@@ -25,8 +25,7 @@ export class SidebarComponent implements OnInit {
         this.checkIfLoggedIn();
     }
 
-    checkIfLoggedIn(): void {
-        console.log(this.router.url);
+    private checkIfLoggedIn(): void {
         this.isLoggedIn = this.router.url.endsWith('/home');
     }
 }

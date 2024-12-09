@@ -31,6 +31,7 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
     }
 
@@ -43,19 +44,25 @@
         flex-direction: column;
 
         button {
+            padding: 10px;
             width: 80%;
-            height: 5%;
+            height: 7%;
             font-size: 16px;
             letter-spacing: 1px;
             background-color: variables.$secondary-grey-color;
             color: white;
             border: none;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: background-color 0.3s ease;
             text-align: center;
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            &:hover {
+                border-left: 5px solid #2AA6C1;
+                cursor: pointer;
+            }
         }
 
 
