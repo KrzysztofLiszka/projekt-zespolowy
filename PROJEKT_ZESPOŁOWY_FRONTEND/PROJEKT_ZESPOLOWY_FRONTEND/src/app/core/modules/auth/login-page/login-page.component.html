@@ -3,14 +3,16 @@
         <p class="form-header">ZALOGUJ SIĘ DO SYSTEMU</p>
         <p class="login-input-header">EMAIL</p>
         <div class="center-elements-inside">
-            <input type="email" formControlName="email">
+            <input type="email" formControlName="email"
+                [ngClass]="{'invalid-input': formGroup.get('email')?.invalid && formGroup.get('email')?.touched}">
         </div>
         <p class="login-input-header">HASŁO</p>
         <div class="center-elements-inside">
             <input type="password" formControlName="password">
         </div>
         <div class="center-elements-inside">
-            <button (click)="login()">ZALOGUJ</button>
+            <button (click)="login()" [ngClass]="{'disabled-button': formGroup.invalid}"
+                [disabled]="formGroup.invalid">ZALOGUJ</button>
         </div>
         <p class="register-link" (click)="goToRegisterPage()">Nie masz konta? Zarejestruj się</p>
     </form>

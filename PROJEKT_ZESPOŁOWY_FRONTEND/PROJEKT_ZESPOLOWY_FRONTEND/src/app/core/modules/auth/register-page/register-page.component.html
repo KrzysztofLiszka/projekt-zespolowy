@@ -3,18 +3,24 @@
         <p class="form-header">ZAREJESTRUJ SIĘ W SYSTEMIE</p>
         <p class="login-input-header">EMAIL</p>
         <div class="center-elements-inside">
-            <input formControlName="email">
+            <input formControlName="email"
+                [ngClass]="{'invalid-input': formGroup.get('email')?.invalid && formGroup.get('email')?.touched}">
         </div>
-        <p class="login-input-header">LOGIN</p>
+        <p class="login-input-header">IMIĘ</p>
         <div class="center-elements-inside">
-            <input formControlName="login">
+            <input formControlName="name">
+        </div>
+        <p class="login-input-header">NAZWISKO</p>
+        <div class="center-elements-inside">
+            <input formControlName="surname">
         </div>
         <p class="login-input-header">HASŁO</p>
         <div class="center-elements-inside">
             <input type="password" formControlName="password">
         </div>
         <div class="center-elements-inside">
-            <button (click)="registerUser()">ZAREJESTRUJ SIĘ</button>
+            <button (click)="registerUser()" [disabled]="formGroup.invalid"
+                [ngClass]="{'disabled-button': formGroup.invalid}">ZAREJESTRUJ SIĘ</button>
         </div>
         <p class="login-link" (click)="goToLoginPage()">Masz już konto? Zaloguj się</p>
     </form>

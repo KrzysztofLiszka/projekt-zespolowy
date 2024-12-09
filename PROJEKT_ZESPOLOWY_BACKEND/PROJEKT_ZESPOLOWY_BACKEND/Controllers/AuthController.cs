@@ -23,7 +23,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             if (user == null) return Unauthorized("Wrong login or password!");
             var jwtToken = _authService.GenerateJtwToken(user);
 
-            return Ok(new { token = jwtToken });
+            return Ok(new { token = jwtToken, username = user.Name + " " + user.Surname });
         }
 
         [HttpPost("register")]

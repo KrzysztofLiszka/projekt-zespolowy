@@ -13,6 +13,10 @@ import { filter } from 'rxjs/operators';
 export class SidebarComponent implements OnInit {
     isLoggedIn: boolean = false;
 
+    get userName(): string {
+        return localStorage.getItem("username") || "";
+    }
+
     constructor(private router: Router) { }
 
     ngOnInit(): void {

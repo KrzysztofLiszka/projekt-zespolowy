@@ -6,14 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const COMPONENTS = [LoginPageComponent, RegisterPageComponent];
 
-
 @NgModule({
     declarations: [COMPONENTS],
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        FormsModule
-    ],
-    exports: [COMPONENTS]
+        FormsModule,],
+    exports: [COMPONENTS],
 })
 export class AuthModule { }
