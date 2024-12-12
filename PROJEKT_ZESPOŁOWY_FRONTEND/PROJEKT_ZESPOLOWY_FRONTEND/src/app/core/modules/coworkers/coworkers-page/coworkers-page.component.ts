@@ -15,7 +15,29 @@ export class CoworkersPageComponent {
     dataSource = [
         { name: 'John Doe', position: 'Software Engineer' },
         { name: 'Jane Smith', position: 'Product Manager' },
-        { name: 'Sam Brown', position: 'Designer' }
+        { name: 'Sam Brown', position: 'Designer' },
+        { name: 'John Doe', position: 'Software Engineer' },
+        { name: 'Jane Smith', position: 'Product Manager' },
+        { name: 'John Doe', position: 'Software Engineer' },
+        { name: 'Jane Smith', position: 'Product Manager' },
+        { name: 'Sam Brown', position: 'Designer' },
+        { name: 'John Doe', position: 'Software Engineer' },
+        { name: 'Jane Smith', position: 'Product Manager' },
+        { name: 'John Doe', position: 'Software Engineer' },
+        { name: 'Jane Smith', position: 'Product Manager' },
+        { name: 'Sam Brown', position: 'Designer' },
+        { name: 'John Doe', position: 'Software Engineer' },
+        { name: 'Jane Smith', position: 'Product Manager' },
+        { name: 'John Doe', position: 'Software Engineer' },
+        { name: 'Jane Smith', position: 'Product Manager' },
+        { name: 'Sam Brown', position: 'Designer' },
+        { name: 'John Doe', position: 'Software Engineer' },
+        { name: 'Jane Smith', position: 'Product Manager' },
+        { name: 'John Doe', position: 'Software Engineer' },
+        { name: 'Jane Smith', position: 'Product Manager' },
+        { name: 'Sam Brown', position: 'Designer' },
+        { name: 'John Doe', position: 'Software Engineer' },
+        { name: 'Jane Smith', position: 'Product Manager' },
     ];
 
     onAdd() {
