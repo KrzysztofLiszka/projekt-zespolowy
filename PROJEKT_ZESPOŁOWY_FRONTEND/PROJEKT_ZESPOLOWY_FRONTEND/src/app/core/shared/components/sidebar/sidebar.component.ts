@@ -5,8 +5,8 @@ import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-sidebar',
-    standalone: true,
     imports: [CommonModule],
+    standalone: true,
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss']
 })
@@ -30,6 +30,10 @@ export class SidebarComponent implements OnInit {
     }
 
     private checkIfLoggedIn(): void {
-        this.isLoggedIn = this.router.url.endsWith('/home');
+        this.isLoggedIn = this.router.url.endsWith('/home') || this.router.url.endsWith('/coworkers');
+    }
+
+    navigateTo(route: string): void {
+        this.router.navigate([`/${route}`]);
     }
 }

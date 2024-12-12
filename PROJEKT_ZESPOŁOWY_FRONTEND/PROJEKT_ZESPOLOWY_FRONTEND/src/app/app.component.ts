@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-root',
-    standalone: true,
     imports: [RouterOutlet, CommonModule, AuthModule, SidebarComponent, TopbarComponent],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
@@ -30,6 +29,6 @@ export class AppComponent {
     }
 
     checkIfLoggedIn(): void {
-        this.isLoggedIn = this.router.url.startsWith('/home') || this.router.url.startsWith('/dashboard');
+        this.isLoggedIn = this.router.url.startsWith('/home') || this.router.url.startsWith('/dashboard') || this.router.url.endsWith('/coworkers');
     }
 }

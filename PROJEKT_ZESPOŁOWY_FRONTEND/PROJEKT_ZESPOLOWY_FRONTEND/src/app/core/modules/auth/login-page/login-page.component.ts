@@ -8,7 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
     selector: 'app-login-page',
     templateUrl: './login-page.component.html',
-    styleUrl: './login-page.component.scss'
+    styleUrl: './login-page.component.scss',
+    standalone: false
 })
 export class LoginPageComponent implements OnDestroy {
     formGroup!: FormGroup;
