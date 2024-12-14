@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
     selector: 'app-login-page',
@@ -15,7 +17,7 @@ export class LoginPageComponent implements OnDestroy {
     formGroup!: FormGroup;
     private subscription: Subscription = new Subscription();
 
-    constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private toastr: ToastrService) {
+    constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private snackBar: MatSnackBar) {
         this.formGroup = this.fb.group({
             email: ["", Validators.email],
             password: [""],
@@ -37,7 +39,12 @@ export class LoginPageComponent implements OnDestroy {
                     });
                 },
                 error: () => {
-                    this.toastr.error('Nieprawidłowy login lub hasło!', "BŁĄD");
+                    this.snackBar.open('Nieprawidłowy login lub hasło!', 'BŁĄD', {
+                        duration: 3000, // czas trwania w ms
+                        horizontalPosition: 'center',
+                        verticalPosition: 'top',
+                        panelClass: ['custom-snackbar']
+                    });
                 },
             })
         );

@@ -88,3 +88,10 @@ button.disabled-button {
     cursor: not-allowed !important;
     opacity: 0.8 !important;
 }
+
+.custom-snackbar {
+    background-color: #e53935;
+    /* czerwony */
+    color: #fff;
+    font-weight: bold;
+}
