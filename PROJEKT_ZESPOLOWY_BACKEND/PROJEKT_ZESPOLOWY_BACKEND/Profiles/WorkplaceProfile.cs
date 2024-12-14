@@ -9,6 +9,9 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Profiles
         public WorkplaceProfile()
         {
             CreateMap<Workplace, WorkplaceTableDto>();
+            CreateMap<User, CooworkerDto>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.Name + " " + src.Surname));
+
         }
     }
 }

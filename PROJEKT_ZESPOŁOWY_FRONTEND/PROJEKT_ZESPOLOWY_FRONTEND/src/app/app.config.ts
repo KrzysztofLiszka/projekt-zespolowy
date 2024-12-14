@@ -16,6 +16,7 @@ export const appConfig: ApplicationConfig = {
         provideClientHydration(),
         provideHttpClient(withInterceptors([TokenInterceptor])),
         provideToastr(),
-        provideAnimations(), provideAnimationsAsync(),
+        provideAnimations(),
+        provideAnimationsAsync(),
     ]
 };

@@ -61,5 +61,12 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             await _workplaceService.DeleteWorkplace(uuid);
             return Ok("Workplace deleted successfully.");
         }
+
+        [HttpGet("coworkers")]
+        public async Task<IActionResult> GetCoworkers()
+        {
+            var coworkers = await _workplaceService.GetCooworkers();
+            return Ok(coworkers);
+        }
     }
 }

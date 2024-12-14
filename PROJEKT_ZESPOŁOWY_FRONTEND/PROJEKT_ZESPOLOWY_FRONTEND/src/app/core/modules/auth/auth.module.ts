@@ -11,7 +11,8 @@ const COMPONENTS = [LoginPageComponent, RegisterPageComponent];
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        FormsModule,],
+        FormsModule,
+    ],
     exports: [COMPONENTS],
 })
 export class AuthModule { }

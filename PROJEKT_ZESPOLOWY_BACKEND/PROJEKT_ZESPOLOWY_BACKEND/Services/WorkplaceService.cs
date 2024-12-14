@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 using PROJEKT_ZESPOLOWY_BACKEND.SqlRepository;
@@ -55,6 +56,14 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
             var workplaces = await _sqlRepository.GetAllAsync<Workplace>();
             var workplacesTableDto = _mapper.Map<List<WorkplaceTableDto>>(workplaces);
             return workplacesTableDto;
+        }
+
+        public async Task<List<CooworkerDto>> GetCooworkers()
+        {
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await _sqlRepository.GetAsync<User>(userId) ?? throw new Exception("User not found!");
+            var workersFromWorkplace = await _sqlRepository.GetQueryable<User>().Where(x => x.WorkplaceUuid == user.WorkplaceUuid && x.Uuid != user.Uuid).ToListAsync();
+            return _mapper.Map<List<CooworkerDto>>(workersFromWorkplace);
         }
     }
 }

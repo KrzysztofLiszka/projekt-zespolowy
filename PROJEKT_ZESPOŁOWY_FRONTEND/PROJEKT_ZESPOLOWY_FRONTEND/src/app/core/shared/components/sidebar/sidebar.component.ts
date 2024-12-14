@@ -14,8 +14,12 @@ export class SidebarComponent implements OnInit {
     isLoggedIn: boolean = false;
 
     get userName(): string {
-        return localStorage.getItem("username") || "";
+        if (typeof window !== 'undefined' && localStorage) {
+            return localStorage.getItem("username") || "";
+        }
+        return "";
     }
+
 
     constructor(private router: Router) { }
 
