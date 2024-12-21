@@ -22,7 +22,6 @@
             width: 150px;
             height: 150px;
             background: no-repeat center center;
-            background-image: url('../../../../assets/template-user-photo.jpg');
             background-size: cover;
             border-radius: 50%;
         }
@@ -33,6 +32,14 @@
             text-transform: uppercase;
             color: white;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            background: no-repeat center center;
+            background-size: cover;
+            border-radius: 50%;
         }
     }
 

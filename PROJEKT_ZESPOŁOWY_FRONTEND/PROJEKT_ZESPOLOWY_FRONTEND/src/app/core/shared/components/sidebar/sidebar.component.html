@@ -1,8 +1,13 @@
 <div *ngIf="isLoggedIn" class="side-bar">
     <div class="user-data">
-        <div class="user-photo" *ngIf="picture && picture.trim()"
+        <div class="user-photo" *ngIf="picture && picture!==null; else defaultImage"
             [style.background-image]="'url(' + getBase64Data(picture) + ')'">
         </div>
+        <ng-template #defaultImage>
+            <div class="user-photo">
+                <img src="../../../../../assets/user-photo.jpg" alt="Default User Photo" />
+            </div>
+        </ng-template>
         <div class="user-name">{{userName}}</div>
     </div>
     <div class="buttons">

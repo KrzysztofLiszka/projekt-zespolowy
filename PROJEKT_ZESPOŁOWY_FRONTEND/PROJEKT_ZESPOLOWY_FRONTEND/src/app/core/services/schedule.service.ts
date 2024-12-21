@@ -7,7 +7,7 @@ import { BaseApiService } from "./base-api.service";
     providedIn: 'root'
 })
 export class ScheduleService extends BaseApiService {
-    readonly CONTROLLER_NAME = "Schedule";
+    readonly CONTROLLER_NAME = "Schedules";
 
     getAllItems(): Observable<any[]> {
         return this.getAll<any>(`${this.CONTROLLER_NAME}`);

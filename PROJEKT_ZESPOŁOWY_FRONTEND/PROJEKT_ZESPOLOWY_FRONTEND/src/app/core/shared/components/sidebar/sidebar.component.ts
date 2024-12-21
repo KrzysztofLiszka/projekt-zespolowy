@@ -13,7 +13,6 @@ import { filter } from 'rxjs/operators';
 export class SidebarComponent implements OnInit {
     isLoggedIn: boolean = false;
     currentRoute: string = '';
-
     get userName(): string {
         if (typeof window !== 'undefined' && localStorage) {
             return localStorage.getItem("username") || "";
@@ -23,10 +22,12 @@ export class SidebarComponent implements OnInit {
 
     get picture(): string | null {
         if (typeof window !== 'undefined' && localStorage) {
-            return localStorage.getItem("picture") || "";
+            const storedPicture = localStorage.getItem("picture");
+            return storedPicture
         }
         return null;
     }
+
 
     constructor(private router: Router) { }
 
@@ -58,7 +59,6 @@ export class SidebarComponent implements OnInit {
     }
 
     getBase64Data(byteFile?: any): any | null {
-        if (!byteFile || byteFile == "") '../../../../assets/template-user-photo.jpg';
         return `data:image/jpg;base64,${byteFile}`;
     }
 }
