@@ -65,10 +65,14 @@
             }
         }
 
-
         button:hover {
             background-color: variables.$hover-blue-color;
             color: white;
+        }
+
+        .active {
+            background-color: variables.$hover-blue-color;
+            border-left: 5px solid #2AA6C1;
         }
     }
 }
