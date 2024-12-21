@@ -68,5 +68,20 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             var coworkers = await _workplaceService.GetCooworkers();
             return Ok(coworkers);
         }
+
+        /*
+        [HttpGet("salaries/{fromDate}/{toDate}")]
+        public async Task<IActionResult> GetSalaries([FromRoute] DateTime? fromDate, [FromRoute] DateTime? toDate)
+        {
+            var salaries = await _workplaceService.GetSalaryDtosAsync();
+            return Ok(salaries);
+        }*/
+
+        [HttpGet("salaries")]
+        public async Task<IActionResult> GetSalaries()
+        {
+            var salaries = await _workplaceService.GetSalaryDtosAsync();
+            return Ok(salaries);
+        }
     }
 }

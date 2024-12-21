@@ -12,6 +12,8 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Profiles
             CreateMap<User, CooworkerDto>()
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.Name + " " + src.Surname));
 
+            CreateMap<User, UserTableDto>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.Name + " " + src.Surname));
         }
     }
 }

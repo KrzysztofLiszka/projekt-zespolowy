@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TableComponent } from '../../../../shared/components/table/table.component';
 import { DocumentationsService } from '../../../../services/documentations.service';
 
@@ -8,7 +8,7 @@ import { DocumentationsService } from '../../../../services/documentations.servi
   templateUrl: './documentation-page.component.html',
   styleUrl: './documentation-page.component.scss'
 })
-export class DocumentationPageComponent {
+export class DocumentationPageComponent implements OnInit {
   displayedColumns: string[] = ['name', 'actions'];
   displayedHeaders: string[] = ['Nazwa', 'Akcja'];
   dataSource: any[] = [];

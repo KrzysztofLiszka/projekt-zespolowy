@@ -11,4 +11,8 @@ export class CooworkersService extends BaseApiService {
     getAllItems(): Observable<any[]> {
         return this.getAll<any>(`${this.CONTROLLER_NAME}/coworkers`);
     }
+
+    getSalaries(): Observable<any[]> {
+        return this.getAll<any>(`Workplaces/salaries`);
+    }
 }

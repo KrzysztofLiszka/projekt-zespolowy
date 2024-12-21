@@ -65,5 +65,26 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
             var workersFromWorkplace = await _sqlRepository.GetQueryable<User>().Where(x => x.WorkplaceUuid == user.WorkplaceUuid && x.Uuid != user.Uuid).ToListAsync();
             return _mapper.Map<List<CooworkerDto>>(workersFromWorkplace);
         }
+
+        public async Task<List<SalaryDto>> GetSalaryDtosAsync()
+        {
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await _sqlRepository.GetAsync<User>(userId) ?? throw new Exception("User not found!");
+            var workersFromWorkplace = await _sqlRepository.GetQueryable<User>().Where(x => x.WorkplaceUuid == user.WorkplaceUuid && x.Uuid != user.Uuid).ToListAsync();
+
+            var result = new List<SalaryDto>();
+            foreach (var worker in workersFromWorkplace)
+            {
+                var timeSpents = await _sqlRepository.GetQueryable<TimeSpent>().Where(x => x.CreatedBy == worker.Uuid).ToListAsync();//where...
+                var amount = timeSpents.Sum(x => x.SpentHours);
+                var salaryDto = new SalaryDto
+                {
+                    FullName = worker.Name + " " + worker.Surname,
+                    Amount = amount * worker.HourlyRate
+                };
+                result.Add(salaryDto);
+            }
+            return result;
+        }
     }
 }

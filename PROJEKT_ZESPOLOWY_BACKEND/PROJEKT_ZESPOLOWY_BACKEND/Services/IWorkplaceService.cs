@@ -10,5 +10,6 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
         Task DeleteWorkplace(Guid uuid);
         Task JoinWorkplace(Guid workplaceUuid);
         Task<List<CooworkerDto>> GetCooworkers();
+        Task<List<SalaryDto>> GetSalaryDtosAsync();
     }
 }

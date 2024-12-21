@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
@@ -16,12 +17,14 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         private readonly IAuthService _authService;
         private readonly ISqlRepository _sqlRepository;
         private readonly ICurrentUserService _currentUserService;
+        private readonly IMapper _mapper;
 
-        public AuthController(IAuthService authService, ISqlRepository sqlRepository, ICurrentUserService currentUserService)
+        public AuthController(IAuthService authService, ISqlRepository sqlRepository, ICurrentUserService currentUserService, IMapper mapper)
         {
             _authService = authService;
             _sqlRepository = sqlRepository;
             _currentUserService = currentUserService;
+            _mapper = mapper;
         }
 
         [HttpPost("login")]
@@ -35,10 +38,8 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
 
             byte[] profilePictureBytes;
 
-            // Jeśli użytkownik nie ma zdjęcia profilowego (null lub pusta tablica bajtów)
             if (user.ProfilePicture == null || user.ProfilePicture.Length == 0)
             {
-                // Pobierz domyślne zdjęcie profilowe
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "user-photo.jpg");
                 if (!System.IO.File.Exists(path))
                 {

@@ -9,5 +9,6 @@
         public Guid? WorkplaceUuid { get; set; }
         public string? RoleName { get; set; } = string.Empty;
         public byte[]? ProfilePicture { get; set; }
+        public double HourlyRate { get; set; } = 0.0;
     }
 }
