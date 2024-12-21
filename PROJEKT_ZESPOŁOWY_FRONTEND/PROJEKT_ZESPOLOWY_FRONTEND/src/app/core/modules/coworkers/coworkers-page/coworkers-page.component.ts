@@ -10,8 +10,8 @@ import { CooworkersService } from '../../../services/cooworkers.service';
     imports: [TableComponent]
 })
 export class CoworkersPageComponent implements OnInit {
-    displayedColumns: string[] = ['fullName', 'email', 'actions'];
-    displayedHeaders: string[] = ['Imię i Nazwisko', 'Email', 'Actions'];
+    displayedColumns: string[] = ['fullName', 'email'];
+    displayedHeaders: string[] = ['Imię i Nazwisko', 'Email'];
     dataSource: any[] = [];
 
     constructor(private coworkersService: CooworkersService) { }
