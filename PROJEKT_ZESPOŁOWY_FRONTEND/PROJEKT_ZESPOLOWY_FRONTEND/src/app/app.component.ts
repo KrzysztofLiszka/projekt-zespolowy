@@ -28,7 +28,14 @@ export class AppComponent {
         this.checkIfLoggedIn();
     }
 
-    checkIfLoggedIn(): void {
-        this.isLoggedIn = this.router.url.startsWith('/home') || this.router.url.startsWith('/dashboard') || this.router.url.endsWith('/coworkers');
+    get userName(): string {
+        if (typeof window !== 'undefined' && localStorage) {
+            return localStorage.getItem("username") || "";
+        }
+        return "";
+    }
+
+    private checkIfLoggedIn(): void {
+        this.isLoggedIn = !!this.userName;
     }
 }

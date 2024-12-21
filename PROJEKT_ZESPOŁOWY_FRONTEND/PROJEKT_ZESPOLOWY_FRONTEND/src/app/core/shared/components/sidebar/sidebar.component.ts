@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit {
     }
 
     private checkIfLoggedIn(): void {
-        this.isLoggedIn = this.router.url.endsWith('/home') || this.router.url.endsWith('/coworkers');
+        this.isLoggedIn = !!this.userName;
     }
 
     navigateTo(route: string): void {
