@@ -5,6 +5,7 @@ using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 using PROJEKT_ZESPOLOWY_BACKEND.Services;
 using PROJEKT_ZESPOLOWY_BACKEND.SqlRepository;
+using System.Reflection;
 
 namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
 {
@@ -27,11 +28,38 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         public async Task<ActionResult> Login(LoginDto loginDto)
         {
             var user = _authService.AuthenticateUser(loginDto);
-            if (user == null) return Unauthorized("Wrong login or password!");
+            if (user == null)
+                return Unauthorized("Wrong login or password!");
+
             var jwtToken = _authService.GenerateJtwToken(user);
 
-            return Ok(new { token = jwtToken, username = user.Name + " " + user.Surname, picture = user.ProfilePicture });
+            byte[] profilePictureBytes;
+
+            // Jeśli użytkownik nie ma zdjęcia profilowego (null lub pusta tablica bajtów)
+            if (user.ProfilePicture == null || user.ProfilePicture.Length == 0)
+            {
+                // Pobierz domyślne zdjęcie profilowe
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "user-photo.jpg");
+                if (!System.IO.File.Exists(path))
+                {
+                    return StatusCode(500, "Default profile picture not found!");
+                }
+                profilePictureBytes = await System.IO.File.ReadAllBytesAsync(path);
+            }
+            else
+            {
+                profilePictureBytes = user.ProfilePicture;
+            }
+
+            return Ok(new
+            {
+                token = jwtToken,
+                username = user.Name + " " + user.Surname,
+                picture = Convert.ToBase64String(profilePictureBytes)
+            });
         }
+
+
 
         [HttpPost("register")]
         public async Task<ActionResult> Register(RegisterDto registerDto)
