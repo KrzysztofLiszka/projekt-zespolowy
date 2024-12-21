@@ -6,8 +6,8 @@ import { BaseApiService } from "./base-api.service";
 @Injectable({
     providedIn: 'root'
 })
-export class ScheduleService extends BaseApiService {
-    readonly CONTROLLER_NAME = "Schedule";
+export class TimeSpentsService extends BaseApiService {
+    readonly CONTROLLER_NAME = "TimeSpents";
 
     getAllItems(): Observable<any[]> {
         return this.getAll<any>(`${this.CONTROLLER_NAME}`);
