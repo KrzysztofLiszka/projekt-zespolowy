@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService extends BaseApiService {
+
   readonly CONTROLLER_NAME = "Auth"
   loginToSystem(loginData: any): Observable<any> {
     return this.post<any>('Auth/login', loginData);
@@ -18,4 +19,11 @@ export class AuthService extends BaseApiService {
   getAllItems(): Observable<any[]> {
     return this.getAll<any>(`${this.CONTROLLER_NAME}/all-users`);
   }
+
+  updateUserProfilePicture(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    return this.post<any>('Auth/UpdateUserProfilePicture', formData);
+  }
+
 }
