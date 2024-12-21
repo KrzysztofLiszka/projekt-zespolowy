@@ -17,10 +17,10 @@ export class SchedulePageComponent {
     constructor(private scheduleService: ScheduleService) { }
 
     ngOnInit(): void {
-        this.subscribeCoworkeres();
+        this.subscribeSchedule();
     }
 
-    private subscribeCoworkeres(): void {
+    private subscribeSchedule(): void {
         this.scheduleService.getAllItems().subscribe(res => { this.dataSource = res })
     }
 
