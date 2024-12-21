@@ -1,0 +1,15 @@
+<div class="dialog-container">
+    <h2>Dodaj zdjęcie profilowe</h2>
+    <div class="file-upload">
+        <label for="fileInput" class="file-label">
+            <i class="fas fa-upload"></i> Wybierz plik
+        </label>
+        <input id="fileInput" type="file" (change)="onFileSelected($event)" />
+        <p *ngIf="selectedFileName">Wybrano plik: {{ selectedFileName }}</p>
+        <p *ngIf="!selectedFileName">Nie wybrano żadnego pliku.</p>
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel-btn" (click)="onCancel()">Anuluj</button>
+        <button class="upload-btn" [disabled]="!selectedFile" (click)="onUpload()">Wyślij</button>
+    </div>
+</div>

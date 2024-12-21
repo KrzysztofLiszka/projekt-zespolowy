@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AddProfilePictureDialogComponent } from '../add-profile-picture-dialog/add-profile-picture-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-sidebar',
@@ -29,7 +31,7 @@ export class SidebarComponent implements OnInit {
     }
 
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private dialog: MatDialog) { }
 
     ngOnInit(): void {
         this.router.events
@@ -60,5 +62,11 @@ export class SidebarComponent implements OnInit {
 
     getBase64Data(byteFile?: any): any | null {
         return `data:image/jpg;base64,${byteFile}`;
+    }
+
+    openAddProfilePictureDialog(): void {
+        this.dialog.open(AddProfilePictureDialogComponent, {
+            width: '400px',
+        });
     }
 }
