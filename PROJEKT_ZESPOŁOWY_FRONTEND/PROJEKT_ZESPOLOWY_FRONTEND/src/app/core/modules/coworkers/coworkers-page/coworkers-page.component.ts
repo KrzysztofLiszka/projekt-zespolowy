@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TableComponent } from '../../../shared/components/table/table.component';
+import { CooworkersService } from '../../../services/cooworkers.service';
 
 @Component({
     selector: 'app-coworkers-page',
@@ -8,37 +9,20 @@ import { TableComponent } from '../../../shared/components/table/table.component
     standalone: true,
     imports: [TableComponent]
 })
-export class CoworkersPageComponent {
-    displayedColumns: string[] = ['name', 'position', 'actions'];
-    displayedHeaders: string[] = ['Name', 'Position', 'Actions'];
+export class CoworkersPageComponent implements OnInit {
+    displayedColumns: string[] = ['fullName', 'email', 'actions'];
+    displayedHeaders: string[] = ['Imię i Nazwisko', 'Email', 'Actions'];
+    dataSource: any[] = [];
 
-    dataSource = [
-        { name: 'John Doe', position: 'Software Engineer' },
-        { name: 'Jane Smith', position: 'Product Manager' },
-        { name: 'Sam Brown', position: 'Designer' },
-        { name: 'John Doe', position: 'Software Engineer' },
-        { name: 'Jane Smith', position: 'Product Manager' },
-        { name: 'John Doe', position: 'Software Engineer' },
-        { name: 'Jane Smith', position: 'Product Manager' },
-        { name: 'Sam Brown', position: 'Designer' },
-        { name: 'John Doe', position: 'Software Engineer' },
-        { name: 'Jane Smith', position: 'Product Manager' },
-        { name: 'John Doe', position: 'Software Engineer' },
-        { name: 'Jane Smith', position: 'Product Manager' },
-        { name: 'Sam Brown', position: 'Designer' },
-        { name: 'John Doe', position: 'Software Engineer' },
-        { name: 'Jane Smith', position: 'Product Manager' },
-        { name: 'John Doe', position: 'Software Engineer' },
-        { name: 'Jane Smith', position: 'Product Manager' },
-        { name: 'Sam Brown', position: 'Designer' },
-        { name: 'John Doe', position: 'Software Engineer' },
-        { name: 'Jane Smith', position: 'Product Manager' },
-        { name: 'John Doe', position: 'Software Engineer' },
-        { name: 'Jane Smith', position: 'Product Manager' },
-        { name: 'Sam Brown', position: 'Designer' },
-        { name: 'John Doe', position: 'Software Engineer' },
-        { name: 'Jane Smith', position: 'Product Manager' },
-    ];
+    constructor(private coworkersService: CooworkersService) { }
+
+    ngOnInit(): void {
+        this.subscribeCoworkeres();
+    }
+
+    private subscribeCoworkeres(): void {
+        this.coworkersService.getAllItems().subscribe(res => { this.dataSource = res })
+    }
 
     onAdd() {
         console.log('Add clicked');
