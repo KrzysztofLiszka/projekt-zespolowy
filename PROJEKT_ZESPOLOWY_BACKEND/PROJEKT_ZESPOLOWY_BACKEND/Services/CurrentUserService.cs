@@ -28,7 +28,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
                 }
             }
 
-            return Guid.Empty;
+            return Guid.Parse("9cfd2ae4-158d-475a-a9d5-d82a35ebca61");
         }
     }
 }

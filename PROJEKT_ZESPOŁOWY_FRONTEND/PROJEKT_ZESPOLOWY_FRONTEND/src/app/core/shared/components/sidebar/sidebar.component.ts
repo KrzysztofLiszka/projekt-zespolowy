@@ -20,6 +20,12 @@ export class SidebarComponent implements OnInit {
         return "";
     }
 
+    get picture(): string | null {
+        if (typeof window !== 'undefined' && localStorage) {
+            return localStorage.getItem("picture") || "";
+        }
+        return null;
+    }
 
     constructor(private router: Router) { }
 
@@ -33,11 +39,20 @@ export class SidebarComponent implements OnInit {
         this.checkIfLoggedIn();
     }
 
+    klik(): void {
+        console.log(this.picture)
+    }
+
     private checkIfLoggedIn(): void {
         this.isLoggedIn = this.router.url.endsWith('/home') || this.router.url.endsWith('/coworkers');
     }
 
     navigateTo(route: string): void {
         this.router.navigate([`/${route}`]);
+    }
+
+    getBase64Data(byteFile?: any): any | null {
+        if (!byteFile || byteFile == "") '../../../../assets/template-user-photo.jpg';
+        return `data:image/jpg;base64,${byteFile}`;
     }
 }

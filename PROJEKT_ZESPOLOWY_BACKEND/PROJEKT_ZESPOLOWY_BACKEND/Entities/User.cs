@@ -8,5 +8,6 @@
         public string PasswordHash { get; set; } = string.Empty;
         public Guid? WorkplaceUuid { get; set; }
         public string? RoleName { get; set; } = string.Empty;
+        public byte[]? ProfilePicture { get; set; }
     }
 }
