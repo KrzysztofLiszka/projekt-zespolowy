@@ -14,11 +14,13 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
     {
         private readonly IAuthService _authService;
         private readonly ISqlRepository _sqlRepository;
+        private readonly ICurrentUserService _currentUserService;
 
-        public AuthController(IAuthService authService, ISqlRepository sqlRepository)
+        public AuthController(IAuthService authService, ISqlRepository sqlRepository, ICurrentUserService currentUserService)
         {
             _authService = authService;
             _sqlRepository = sqlRepository;
+            _currentUserService = currentUserService;
         }
 
         [HttpPost("login")]
@@ -28,7 +30,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             if (user == null) return Unauthorized("Wrong login or password!");
             var jwtToken = _authService.GenerateJtwToken(user);
 
-            return Ok(new { token = jwtToken, username = user.Name + " " + user.Surname });
+            return Ok(new { token = jwtToken, username = user.Name + " " + user.Surname, picture = user.ProfilePicture });
         }
 
         [HttpPost("register")]
@@ -44,6 +46,31 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         {
             var result = await _sqlRepository.GetAllAsync<User>();
             return Ok(result);
+        }
+
+        [Authorize]
+        [HttpPost("UpdateUserProfilePicture")]
+        public async Task<IActionResult> UpdateUserProfilePicture()
+        {
+            var file = Request.Form.Files[0];
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await _sqlRepository.GetAsync<User>(userId);
+            if (user == null)
+            {
+                return NotFound("User with this Id was not found!");
+            }
+            user.ProfilePicture = ConvertFileToByte(file);
+            await _sqlRepository.UpdateAsync(user);
+            return Ok();
+        }
+
+        private static byte[] ConvertFileToByte(IFormFile file)
+        {
+            using var ms = new MemoryStream();
+            file.CopyTo(ms);
+            var fileBytes = ms.ToArray();
+
+            return fileBytes;
         }
     }
 }

@@ -1,6 +1,8 @@
 <div *ngIf="isLoggedIn" class="side-bar">
     <div class="user-data">
-        <div class="user-photo"></div>
+        <div class="user-photo" *ngIf="picture && picture.trim()"
+            [style.background-image]="'url(' + getBase64Data(picture) + ')'">
+        </div>
         <div class="user-name">{{userName}}</div>
     </div>
     <div class="buttons">

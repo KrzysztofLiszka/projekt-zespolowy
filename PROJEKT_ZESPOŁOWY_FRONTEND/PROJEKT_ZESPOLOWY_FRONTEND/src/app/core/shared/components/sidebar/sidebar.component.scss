@@ -21,7 +21,8 @@
         .user-photo {
             width: 150px;
             height: 150px;
-            background: url('../../../../assets/template-user-photo.jpg') no-repeat center center;
+            background: no-repeat center center;
+            background-image: url('../../../../assets/template-user-photo.jpg');
             background-size: cover;
             border-radius: 50%;
         }
