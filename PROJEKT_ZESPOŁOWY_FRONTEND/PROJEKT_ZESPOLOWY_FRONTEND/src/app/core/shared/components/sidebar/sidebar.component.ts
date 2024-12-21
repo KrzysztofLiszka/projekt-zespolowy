@@ -12,6 +12,7 @@ import { filter } from 'rxjs/operators';
 })
 export class SidebarComponent implements OnInit {
     isLoggedIn: boolean = false;
+    currentRoute: string = '';
 
     get userName(): string {
         if (typeof window !== 'undefined' && localStorage) {
@@ -32,7 +33,8 @@ export class SidebarComponent implements OnInit {
     ngOnInit(): void {
         this.router.events
             .pipe(filter(event => event instanceof NavigationEnd))
-            .subscribe(() => {
+            .subscribe((event: NavigationEnd) => {
+                this.currentRoute = event.urlAfterRedirects;
                 this.checkIfLoggedIn();
             });
 
@@ -44,7 +46,11 @@ export class SidebarComponent implements OnInit {
     }
 
     private checkIfLoggedIn(): void {
-        this.isLoggedIn = this.router.url.endsWith('/home') || this.router.url.endsWith('/coworkers');
+        this.isLoggedIn = !!this.userName;
+    }
+
+    isActiveRoute(route: string): boolean {
+        return this.currentRoute.includes(route);
     }
 
     navigateTo(route: string): void {
