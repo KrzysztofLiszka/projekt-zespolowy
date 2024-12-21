@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
@@ -8,6 +8,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TimeSpentsController : ControllerBase
     {
         private readonly ISqlRepository _sqlRepository;

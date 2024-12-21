@@ -13,5 +13,6 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<TimeSpent> TimeSpents { get; set; }
+        public DbSet<Documentation> Documentations { get; set; }
     }
 }

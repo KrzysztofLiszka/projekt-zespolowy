@@ -33,7 +33,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
 
             var claims = new List<Claim>
             {
-                new("userId", user.Id.ToString())
+                new("userId", user.Uuid.ToString())
             };
             if (user.RoleName != null) claims.Add(new Claim(ClaimTypes.Role, user.RoleName));
 
