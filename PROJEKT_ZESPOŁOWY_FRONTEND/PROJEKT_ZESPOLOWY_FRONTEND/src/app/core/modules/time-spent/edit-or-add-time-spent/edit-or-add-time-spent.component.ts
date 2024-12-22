@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EditOrAddScheduleComponent } from '../../schedule/edit-or-add-schedule/edit-or-add-schedule.component';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,19 +17,19 @@ export class EditOrAddTimeSpentComponent {
 
     constructor(
         private fb: FormBuilder,
-        public dialogRef: MatDialogRef<EditOrAddScheduleComponent>,
+        public dialogRef: MatDialogRef<EditOrAddTimeSpentComponent>, // Poprawka: użycie poprawnego typu dialogu
         @Inject(MAT_DIALOG_DATA) public data: { timeSpent: any; isEdit: boolean }
     ) {
-        console.log(data);
 
-        const date = new Date(data.timeSpent?.date);
-        const hours = data.timeSpent?.spentHours.toString().padStart(2, '0');
+        const timeSpent = data.timeSpent || {};
+        const date = timeSpent.date ? new Date(timeSpent.date) : new Date();
+        const hours = timeSpent.spentHours ? timeSpent.spentHours.toString().padStart(2, '0') : '00';
         const minutes = '00';
 
         this.timeSpentForm = this.fb.group({
-            date: [date.toISOString().split('T')[0] || '', Validators.required],
-            spentHours: [`${hours}:${minutes}` || '', Validators.required],
-            uuid: [data.timeSpent?.uuid || '']
+            date: [date.toISOString().split('T')[0], Validators.required],
+            spentHours: [`${hours}:${minutes}`, Validators.required],
+            uuid: [timeSpent.uuid || '']
         });
     }
 

@@ -27,10 +27,10 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
                 Date = newTimeSpent.Date
             };
             await _sqlRepository.AddAsync(timeSpent);
-            return Ok("TimeSpent added successfully.");
+            return Ok(new { message = "TimeSpent added successfully." });
         }
 
-        [HttpPut("edit")]
+            [HttpPut("edit")]
         public async Task<IActionResult> EditTimeSpent([FromBody] EditTimeSpentDto editTimeSpent)
         {
             var timeSpent = await _sqlRepository.GetAsync<TimeSpent>(editTimeSpent.Uuid);
@@ -39,7 +39,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             timeSpent.Date = editTimeSpent.Date;
 
             await _sqlRepository.UpdateAsync(timeSpent);
-            return Ok("TimeSpent updated successfully.");
+            return Ok(new { message = "TimeSpent updated successfully." });
         }
 
         [HttpGet]

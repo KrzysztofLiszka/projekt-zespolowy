@@ -9,13 +9,14 @@ import { Subscription } from 'rxjs';
     selector: 'app-time-spent-page',
     imports: [TableComponent],
     templateUrl: './time-spent-page.component.html',
-    styleUrl: './time-spent-page.component.scss'
+    styleUrls: ['./time-spent-page.component.scss']
 })
 export class TimeSpentPageComponent {
     displayedColumns: string[] = ['spentHours', 'date'];
     displayedHeaders: string[] = ['Spędzony czas', 'Data'];
     dataSource: any[] = [];
     subscription = new Subscription();
+
     constructor(private timeSpentsService: TimeSpentsService, private dialog: MatDialog) { }
 
     ngOnInit(): void {
@@ -23,25 +24,33 @@ export class TimeSpentPageComponent {
     }
 
     private subscribeTimeSpents(): void {
-        this.timeSpentsService.getAllItems().subscribe(res => { this.dataSource = res })
+        this.timeSpentsService.getAllItems().subscribe(res => {
+            this.dataSource = res;
+        });
     }
-
 
     onAdd(): void {
         const dialogRef = this.dialog.open(EditOrAddTimeSpentComponent, {
             width: '400px',
-            data: { schedule: {}, isEdit: false },
+            data: { timeSpent: null, isEdit: false },
         });
 
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
-                console.log('dodaj');
+                this.timeSpentsService.addItem(result).subscribe(
+                    response => {
+                        this.subscribeTimeSpents();
+                    },
+                    error => {
+                        console.error('Błąd podczas dodawania elementu:', error);
+                    }
+                );
             }
         });
     }
 
+
     onEdit(item: any): void {
-        console.log(item);
         const dialogRef = this.dialog.open(EditOrAddTimeSpentComponent, {
             width: '400px',
             data: { timeSpent: item, isEdit: true },
@@ -49,15 +58,12 @@ export class TimeSpentPageComponent {
 
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
-                console.log(result);
                 this.timeSpentsService.updateItem(result).subscribe(
                     response => {
-                        console.log('Item updated successfully:', response);
-                        // Możesz dodać logikę, np. zamknięcie dialogu po pomyślnym zaktualizowaniu
+                        this.subscribeTimeSpents();
                     },
                     error => {
-                        console.error('Error updating item:', error);
-                        // Możesz dodać logikę obsługi błędu, np. wyświetlenie komunikatu o błędzie
+                        console.error('Błąd podczas aktualizacji elementu:', error);
                     }
                 );
             }
