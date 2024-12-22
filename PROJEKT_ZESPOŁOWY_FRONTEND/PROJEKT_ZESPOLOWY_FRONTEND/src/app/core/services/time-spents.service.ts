@@ -12,4 +12,8 @@ export class TimeSpentsService extends BaseApiService {
     getAllItems(): Observable<any[]> {
         return this.getAll<any>(`${this.CONTROLLER_NAME}`);
     }
+
+    updateItem(item: any): Observable<any> {
+        return this.put(`${this.CONTROLLER_NAME}/edit`, item)
+    }
 }

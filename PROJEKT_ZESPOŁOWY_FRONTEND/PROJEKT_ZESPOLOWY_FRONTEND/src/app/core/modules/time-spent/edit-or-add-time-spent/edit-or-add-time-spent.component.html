@@ -1,0 +1,19 @@
+<div class="dialog-container">
+    <h2>{{ data.isEdit ? 'Edytuj spędzony czas' : 'Dodaj Spęzony czas' }}</h2>
+    <form [formGroup]="timeSpentForm">
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Data</mat-label>
+            <input matInput formControlName="date" type="date" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Spędzone godziny</mat-label>
+            <input matInput formControlName="spentHours" type="time" />
+        </mat-form-field>
+    </form>
+
+    <div class="dialog-actions">
+        <button mat-button (click)="onCancel()">Anuluj</button>
+        <button mat-raised-button class="save-button" (click)="onSave()">Zapisz</button>
+    </div>
+</div>
