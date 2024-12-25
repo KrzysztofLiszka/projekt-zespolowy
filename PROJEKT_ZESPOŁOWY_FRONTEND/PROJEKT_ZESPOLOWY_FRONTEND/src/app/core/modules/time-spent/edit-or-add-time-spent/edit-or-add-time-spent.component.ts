@@ -17,7 +17,7 @@ export class EditOrAddTimeSpentComponent {
 
     constructor(
         private fb: FormBuilder,
-        public dialogRef: MatDialogRef<EditOrAddTimeSpentComponent>, // Poprawka: użycie poprawnego typu dialogu
+        public dialogRef: MatDialogRef<EditOrAddTimeSpentComponent>,
         @Inject(MAT_DIALOG_DATA) public data: { timeSpent: any; isEdit: boolean }
     ) {
 
@@ -56,7 +56,7 @@ export class EditOrAddTimeSpentComponent {
                 spentHours: spentHours
             };
 
-            console.log('Data to save:', dataToSave);
+            console.log('Data to save:',);
             this.dialogRef.close(dataToSave);
         } else {
             console.log('Form is invalid:', this.timeSpentForm);

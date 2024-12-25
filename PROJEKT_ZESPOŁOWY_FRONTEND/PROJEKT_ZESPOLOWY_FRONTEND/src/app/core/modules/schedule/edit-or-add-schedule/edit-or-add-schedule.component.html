@@ -1,4 +1,4 @@
-<div class="dialog-coCntainer">
+<div class="dialog-container">
     <h2>{{ data.isEdit ? 'Edytuj Harmonogram' : 'Dodaj Harmonogram' }}</h2>
     <form [formGroup]="scheduleForm">
         <mat-form-field appearance="fill" class="form-field">
@@ -19,6 +19,6 @@
 
     <div class="dialog-actions">
         <button mat-button (click)="onCancel()">Anuluj</button>
-        <button mat-raised-button color="primary" (click)="onSave()">Zapisz</button>
+        <button mat-raised-button class="save-button" (click)="onSave()">Zapisz</button>
     </div>
 </div>

@@ -30,12 +30,19 @@ export class SchedulePageComponent {
     onAdd(): void {
         const dialogRef = this.dialog.open(EditOrAddScheduleComponent, {
             width: '400px',
-            data: { schedule: {}, isEdit: false },
+            data: { schedule: null, isEdit: false },
         });
 
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
-                console.log('dodaj');
+                this.scheduleService.addItem(result).subscribe(
+                    response => {
+                        this.subscribeSchedule();
+                    },
+                    error => {
+                        console.error('Błąd podczas dodawania elementu:', error);
+                    }
+                );
             }
         });
     }
@@ -45,10 +52,16 @@ export class SchedulePageComponent {
             width: '400px',
             data: { schedule: item, isEdit: true },
         });
-
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
-                console.log('update');
+                this.scheduleService.updateItem(result).subscribe(
+                    response => {
+                        this.subscribeSchedule();
+                    },
+                    error => {
+                        console.error('Błąd podczas aktualizacji elementu:', error);
+                    }
+                );
             }
         });
     }

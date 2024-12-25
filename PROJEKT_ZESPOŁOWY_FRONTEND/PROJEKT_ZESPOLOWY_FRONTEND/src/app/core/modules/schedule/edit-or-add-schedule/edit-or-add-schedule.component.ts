@@ -27,20 +27,18 @@ export class EditOrAddScheduleComponent {
         public dialogRef: MatDialogRef<EditOrAddScheduleComponent>,
         @Inject(MAT_DIALOG_DATA) public data: { schedule: any; isEdit: boolean }
     ) {
-        // Tworzenie formularza z danymi wejściowymi lub pustymi wartościami
         this.scheduleForm = this.fb.group({
             name: [data.schedule?.name || '', Validators.required],
             date: [data.schedule?.date || '', [Validators.required, this.validateDate]],
             hour: [data.schedule?.hour || '', [Validators.required, this.validateHour]],
+            uuid: [data.schedule?.uuid || '']
         });
     }
 
-    // Metoda anulowania (zamknięcie bez danych)
     onCancel(): void {
         this.dialogRef.close();
     }
 
-    // Metoda zapisu (zamknięcie z danymi)
     onSave(): void {
         if (this.scheduleForm.valid) {
             this.dialogRef.close(this.scheduleForm.value);
@@ -48,7 +46,7 @@ export class EditOrAddScheduleComponent {
     }
 
     private validateDate(control: any): { [key: string]: boolean } | null {
-        const datePattern = /^\d{4}-\d{2}-\d{2}$/; // Format YYYY-MM-DD
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
         if (!control.value || datePattern.test(control.value)) {
             return null;
         }
@@ -56,7 +54,7 @@ export class EditOrAddScheduleComponent {
     }
 
     private validateHour(control: any): { [key: string]: boolean } | null {
-        const hourPattern = /^([01]\d|2[0-3]):([0-5]\d)$/; // Format HH:mm
+        const hourPattern = /^([01]\d|2[0-3]):([0-5]\d)$/;
         if (!control.value || hourPattern.test(control.value)) {
             return null;
         }

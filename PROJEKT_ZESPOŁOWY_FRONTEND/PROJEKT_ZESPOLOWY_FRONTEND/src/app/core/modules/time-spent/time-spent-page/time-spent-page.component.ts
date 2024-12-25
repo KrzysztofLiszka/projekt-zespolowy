@@ -55,7 +55,6 @@ export class TimeSpentPageComponent {
             width: '400px',
             data: { timeSpent: item, isEdit: true },
         });
-
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
                 this.timeSpentsService.updateItem(result).subscribe(

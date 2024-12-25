@@ -29,7 +29,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
                 Name = newSchedule.Name
             };
             await _sqlRepository.AddAsync(schedule);
-            return Ok("Schedule added successfully.");
+            return Ok(new { message = "Schedulet added successfully." });
         }
 
         [HttpPut("edit")]
@@ -42,7 +42,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             schedule.Name = editSchedule.Name;
 
             await _sqlRepository.UpdateAsync(schedule);
-            return Ok("Schedule updated successfully.");
+            return Ok(new { message = "Schedule upated successfully." });
         }
 
         [HttpGet]
@@ -56,7 +56,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         public async Task<IActionResult> DeleteSchedule([FromRoute] Guid uuid)
         {
             await _sqlRepository.DeleteAsync<Schedule>(uuid);
-            return Ok("Assignment deleted successfully.");
+            return Ok(new { message = "Schedule deleted successfully." });
         }
     }
 }

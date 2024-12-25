@@ -53,7 +53,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         public async Task<IActionResult> DeleteTimeSpents([FromRoute] Guid uuid)
         {
             await _sqlRepository.DeleteAsync<TimeSpent>(uuid);
-            return Ok("TimeSpent deleted successfully.");
+            return Ok(new { message = "TimeSpent deleted successfully." });
         }
     }
 }
