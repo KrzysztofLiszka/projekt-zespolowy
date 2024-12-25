@@ -3,6 +3,7 @@ import { ScheduleService } from '../../../services/schedule.service';
 import { TableComponent } from '../../../shared/components/table/table.component';
 import { EditOrAddScheduleComponent } from '../edit-or-add-schedule/edit-or-add-schedule.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-schedule-page',
@@ -12,10 +13,10 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SchedulePageComponent {
 
-    displayedColumns: string[] = ['name', 'date', 'hour'];
-    displayedHeaders: string[] = ['Nazwa', 'Data', 'Godzina'];
+    displayedColumns: string[] = ['name', 'date', 'hour', 'actions'];
+    displayedHeaders: string[] = ['Nazwa', 'Data', 'Godzina', 'Akcje'];
     dataSource: any[] = [];
-
+    subscription = new Subscription();
     constructor(private scheduleService: ScheduleService, private dialog: MatDialog) { }
 
     ngOnInit(): void {
@@ -67,6 +68,10 @@ export class SchedulePageComponent {
     }
 
     onDelete(item: any) {
-        console.log('Delete clicked', item);
+        this.subscription.add(
+            this.scheduleService.deleteItem(item.uuid).subscribe(() => {
+                this.subscribeSchedule();
+            })
+        );
     }
 }

@@ -19,4 +19,8 @@ export class TimeSpentsService extends BaseApiService {
     updateItem(item: any): Observable<any> {
         return this.put(`${this.CONTROLLER_NAME}/edit`, item)
     }
+
+    deleteItem(id: string): Observable<any> {
+        return this.delete(`${this.CONTROLLER_NAME}/${id}`)
+    }
 }

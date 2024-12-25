@@ -12,8 +12,8 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./time-spent-page.component.scss']
 })
 export class TimeSpentPageComponent {
-    displayedColumns: string[] = ['spentHours', 'date'];
-    displayedHeaders: string[] = ['Spędzony czas', 'Data'];
+    displayedColumns: string[] = ['spentHours', 'date', 'actions'];
+    displayedHeaders: string[] = ['Spędzony czas', 'Data', 'Akcje'];
     dataSource: any[] = [];
     subscription = new Subscription();
 
@@ -71,6 +71,10 @@ export class TimeSpentPageComponent {
 
 
     onDelete(item: any) {
-        console.log('Delete clicked', item);
+        this.subscription.add(
+            this.timeSpentsService.deleteItem(item.uuid).subscribe(() => {
+                this.subscribeTimeSpents();
+            })
+        );
     }
 }

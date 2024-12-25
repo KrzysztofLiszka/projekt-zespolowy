@@ -75,6 +75,10 @@ tr:nth-child(even):hover {
     background-color: rgba(45, 47, 51, 255);
 }
 
+.actions {
+    order: 99;
+}
+
 
 mat-icon {
     cursor: pointer;
