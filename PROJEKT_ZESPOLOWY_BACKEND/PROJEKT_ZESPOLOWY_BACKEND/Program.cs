@@ -70,6 +70,7 @@ builder.Services.AddScoped<IWorkplaceService, WorkplaceService>();
 builder.Services.AddScoped<IAssignmentService, AssignmentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<IVisualizationService, VisualizationService>();
 
 
 builder.Services.AddAutoMapper(typeof(WorkplaceProfile));

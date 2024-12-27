@@ -36,10 +36,8 @@ export class AddProfilePictureDialogComponent {
                     next: () => {
                         const base64String = this.reader.result as string;
                         localStorage.setItem('picture', base64String);
-                        alert('Zdjęcie zostało zaktualizowane!');
                     },
                     error: (err) => {
-                        alert('Nie udało się zaktualizować zdjęcia.');
                     },
                 })
             );

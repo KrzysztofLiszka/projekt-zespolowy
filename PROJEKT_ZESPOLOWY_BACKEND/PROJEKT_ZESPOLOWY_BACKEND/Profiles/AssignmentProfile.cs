@@ -9,6 +9,8 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Profiles
         public AssignmentProfile() 
         {
             CreateMap<Assignment, AssignmentTableDto>();
+            CreateMap<Image, ImageDto>();
+            CreateMap<ImageDto, Image>();
         }
     }
 }
