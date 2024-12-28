@@ -9,6 +9,7 @@ import { TimeSpentPageComponent } from './core/modules/time-spent/time-spent-pag
 import { DocumentationPageComponent } from './core/modules/documentation/components/documentation-page/documentation-page.component';
 import { UsersPageComponent } from './core/modules/auth/users-page/users-page.component';
 import { PaymentsComponent } from './core/modules/payments/components/payments/payments.component';
+import { RolesPageComponent } from './core/modules/roles/roles-page/roles-page.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPageComponent },
@@ -21,5 +22,6 @@ export const routes: Routes = [
     { path: 'time-spents', component: TimeSpentPageComponent },
     { path: 'documentations', component: DocumentationPageComponent },
     { path: 'users', component: UsersPageComponent },
-    { path: 'payments', component: PaymentsComponent }
+    { path: 'payments', component: PaymentsComponent },
+    { path: 'roles', component: RolesPageComponent }
 ];

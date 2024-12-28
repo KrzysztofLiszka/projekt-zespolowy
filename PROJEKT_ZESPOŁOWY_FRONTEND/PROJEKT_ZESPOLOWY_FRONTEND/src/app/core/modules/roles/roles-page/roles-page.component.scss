@@ -1,0 +1,9 @@
+@use '../../../../variables.scss';
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding-left: 2%;
+    background-color: variables.$primary-grey-color;
+    border: solid 2px white;
+}

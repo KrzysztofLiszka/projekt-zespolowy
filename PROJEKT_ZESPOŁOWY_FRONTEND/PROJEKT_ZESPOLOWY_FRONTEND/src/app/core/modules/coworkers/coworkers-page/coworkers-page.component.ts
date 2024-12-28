@@ -23,16 +23,4 @@ export class CoworkersPageComponent implements OnInit {
     private subscribeCoworkeres(): void {
         this.coworkersService.getAllItems().subscribe(res => { this.dataSource = res })
     }
-
-    onAdd() {
-        console.log('Add clicked');
-    }
-
-    onEdit(item: any) {
-        console.log('Edit clicked', item);
-    }
-
-    onDelete(item: any) {
-        console.log('Delete clicked', item);
-    }
 }
