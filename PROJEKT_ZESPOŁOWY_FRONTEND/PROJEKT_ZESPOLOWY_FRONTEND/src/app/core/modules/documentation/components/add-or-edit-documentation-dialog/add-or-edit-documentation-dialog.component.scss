@@ -1,0 +1,25 @@
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h2 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .form-field {
+        width: 100%;
+    }
+
+    .dialog-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+
+        .save-button {
+            background-color: #2aa6c1;
+            color: white;
+        }
+    }
+}

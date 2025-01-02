@@ -12,8 +12,12 @@
                         class="link-style">
                         {{ row[column] }}
                     </span>
-                    <span *ngIf="column !== 'name' || !(isRedirect && !displayEdit)">
+                    <span
+                        *ngIf="column !== 'name' && column !== 'createdAt' && column!=='lastUpdatedAt' || !(isRedirect && !displayEdit )&& column!=='createdAt' && column!=='lastUpdatedAt'">
                         {{ row[column] }}
+                    </span>
+                    <span *ngIf="column === 'createdAt' || column==='lastUpdatedAt'">
+                        {{ row[column] | date: 'yyyy-MM-dd HH:mm:ss' }}
                     </span>
                 </ng-container>
                 <ng-container *ngIf="column === 'actions'">

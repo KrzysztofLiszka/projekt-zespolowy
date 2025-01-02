@@ -27,7 +27,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
                 DescriptionHtmlContent = newDocumentation.DescriptionHtmlContent
             };
             await _sqlRepository.AddAsync(documentation);
-            return Ok("Documentation added successfully.");
+            return Ok(new { message = "Visualization deleted suceszxfuly" });
         }
 
         [HttpPut("edit")]
@@ -39,7 +39,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             documentation.DescriptionHtmlContent = editDocumentation.DescriptionHtmlContent;
 
             await _sqlRepository.UpdateAsync(documentation);
-            return Ok("Documentation updated successfully.");
+            return Ok(new { message = "Visualization deleted suceszxfuly" });
         }
 
         [HttpGet]
@@ -53,7 +53,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         public async Task<IActionResult> DeleteDocumentation([FromRoute] Guid uuid)
         {
             await _sqlRepository.DeleteAsync<Documentation>(uuid);
-            return Ok("Documentation deleted successfully.");
+            return Ok(new { message = "Visualization deleted suceszxfuly" });
         }
     }
 }
