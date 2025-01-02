@@ -2,6 +2,7 @@
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 using PROJEKT_ZESPOLOWY_BACKEND.SqlRepository;
+using System.Text;
 
 namespace PROJEKT_ZESPOLOWY_BACKEND.Services
 {
@@ -31,6 +32,13 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
             var visualizations = await _sqlRepository.GetAllAsync<Visualization>();
             item.Name = "Wizualizacja" + (visualizations.Count + 1);
             await _sqlRepository.AddAsync(item);
+        }
+
+        public async Task<string> GetNewVisualizationName()
+        {
+            var visualizations = await GetAllItemsAsync();
+            string name = $"Wizualizacja {visualizations.Count+1}";
+            return name;
         }
 
         public async Task DeleteImage(Guid imageId)

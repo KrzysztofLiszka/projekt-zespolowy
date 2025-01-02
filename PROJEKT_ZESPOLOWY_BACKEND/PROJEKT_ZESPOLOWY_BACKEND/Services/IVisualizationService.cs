@@ -7,5 +7,6 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
         Task AddImage(Guid visualizationId, IFormFile file);
         Task DeleteImage(Guid imageId);
         Task<List<ImageDto>> GetImages(Guid visualizationId);
+        Task<string> GetNewVisualizationName();
     }
 }

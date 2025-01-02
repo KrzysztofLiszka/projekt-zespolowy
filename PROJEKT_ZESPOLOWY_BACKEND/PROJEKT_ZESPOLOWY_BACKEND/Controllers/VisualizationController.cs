@@ -26,8 +26,9 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         public async Task<IActionResult> AddNewVisualization()
         {
             var visualization = new Visualization();
+            visualization.Name = await _visualizationService.GetNewVisualizationName();
             await _sqlRepository.AddAsync(visualization);
-            return Ok("Visualization added successfully.");
+            return Ok(new { message = "Vis added sucessfully." });
         }
 
         [HttpGet]
@@ -41,7 +42,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         public async Task<IActionResult> DeleteVisualization([FromRoute] Guid uuid)
         {
             await _sqlRepository.DeleteAsync<Visualization>(uuid);
-            return Ok("Visualization deleted successfully.");
+            return Ok(new { message = "Visualization deleted suceszxfuly" });
         }
 
 
