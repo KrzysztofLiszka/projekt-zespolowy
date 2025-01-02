@@ -1,0 +1,42 @@
+@use '../../../../../variables.scss';
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding-left: 2%;
+    background-color: variables.$primary-grey-color;
+    border: solid 2px white;
+    border-right: none;
+
+    .header {
+        padding: 10px;
+        width: 80vw;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+
+        .header-text {
+            color: white;
+            font-size: 30px;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+    }
+}
+
+p {
+    color: white;
+    font-size: 16px;
+    margin: 10px 0;
+
+    strong {
+        font-weight: 500;
+    }
+}
+
+div {
+    color: white;
+    font-size: 16px;
+    max-width: 90%;
+}

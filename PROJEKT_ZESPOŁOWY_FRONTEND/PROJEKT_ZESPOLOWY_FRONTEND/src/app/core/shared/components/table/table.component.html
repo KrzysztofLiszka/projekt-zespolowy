@@ -8,12 +8,11 @@
             <th mat-header-cell *matHeaderCellDef> {{ displayedHeaders[i] }} </th>
             <td mat-cell *matCellDef="let row">
                 <ng-container *ngIf="column !== 'actions'">
-                    <span *ngIf="column === 'name' && isRedirect && !displayEdit" (click)="onNameClick(row)"
-                        class="link-style">
+                    <span *ngIf="column === 'name' && isRedirect" (click)="onNameClick(row)" class="link-style">
                         {{ row[column] }}
                     </span>
                     <span
-                        *ngIf="column !== 'name' && column !== 'createdAt' && column!=='lastUpdatedAt' || !(isRedirect && !displayEdit )&& column!=='createdAt' && column!=='lastUpdatedAt'">
+                        *ngIf="column !== 'name' && column !== 'createdAt' && column!=='lastUpdatedAt' || !(isRedirect )&& column!=='createdAt' && column!=='lastUpdatedAt'">
                         {{ row[column] }}
                     </span>
                     <span *ngIf="column === 'createdAt' || column==='lastUpdatedAt'">

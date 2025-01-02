@@ -12,6 +12,7 @@ import { PaymentsComponent } from './core/modules/payments/components/payments/p
 import { RolesPageComponent } from './core/modules/roles/roles-page/roles-page.component';
 import { VisualizationsPageComponent } from './core/modules/visualizations/visualizations-page/visualizations-page.component';
 import { VisualizationPageComponent } from './core/modules/visualizations/visualization-page/visualization-page.component';
+import { DocumentationDetailsComponent } from './core/modules/documentation/components/documentation-details/documentation-details.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPageComponent },
@@ -23,6 +24,7 @@ export const routes: Routes = [
     { path: 'schedule', component: SchedulePageComponent },
     { path: 'time-spents', component: TimeSpentPageComponent },
     { path: 'documentations', component: DocumentationPageComponent },
+    { path: 'documentations/:id', component: DocumentationDetailsComponent },
     { path: 'users', component: UsersPageComponent },
     { path: 'payments', component: PaymentsComponent },
     { path: 'roles', component: RolesPageComponent },

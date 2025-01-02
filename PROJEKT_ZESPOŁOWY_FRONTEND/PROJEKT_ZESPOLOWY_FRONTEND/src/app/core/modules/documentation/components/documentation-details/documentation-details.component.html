@@ -1,0 +1,9 @@
+<div class="container" *ngIf="documentation">
+    <div class="header">
+        <div class="header-text">{{ documentation.name }}</div>
+    </div>
+    <p><strong>Utworzono:</strong> {{ documentation.createdAt | date: 'yyyy-MM-dd HH:mm:ss' }}</p>
+    <p><strong>Ostatnia aktualizacja:</strong> {{ documentation.lastUpdatedAt | date: 'yyyy-MM-dd HH:mm:ss' }}</p>
+    <div><strong>Treść:</strong></div>
+    <div>{{documentation.descriptionHtmlContent}}</div>
+</div>

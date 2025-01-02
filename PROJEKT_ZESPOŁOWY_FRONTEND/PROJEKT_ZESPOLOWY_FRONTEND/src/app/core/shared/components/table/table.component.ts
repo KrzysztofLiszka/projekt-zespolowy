@@ -37,12 +37,7 @@ export class TableComponent {
     }
 
     onEditClick(item: any): void {
-        if (this.isRedirect) {
-            this.router.navigate([`${item.uuid}`], { relativeTo: this.route });
-            console.log(item.uuid);
-        } else {
-            this.editClicked.emit(item);
-        }
+        this.editClicked.emit(item);
     }
 
     onDeleteClick(item: any): void {
@@ -50,7 +45,7 @@ export class TableComponent {
     }
 
     onNameClick(item: any): void {
-        if (this.isRedirect && !this.displayEdit) {
+        if (this.isRedirect) {
             this.router.navigate([`${item.uuid}`], { relativeTo: this.route });
             console.log(item.uuid);
         }

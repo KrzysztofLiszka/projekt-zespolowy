@@ -49,6 +49,13 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(documentations);
         }
 
+        [HttpGet("{uuid:guid}")]
+        public async Task<IActionResult> GetDocumentationById([FromRoute] Guid uuid)
+        {
+            var item = await _sqlRepository.GetAsync<Documentation>(uuid);
+            if (item == null) throw new Exception("Visualization not found!");
+            return Ok(item);
+        }
         [HttpDelete("{uuid:guid}")]
         public async Task<IActionResult> DeleteDocumentation([FromRoute] Guid uuid)
         {

@@ -12,6 +12,10 @@ export class DocumentationsService extends BaseApiService {
         return this.getAll<any>(`${this.CONTROLLER_NAME}`);
     }
 
+    getItemById(id: string): Observable<any> {
+        return this.get<any>(`${this.CONTROLLER_NAME}/${id}`);
+    }
+
     addItem(item: any): Observable<any> {
         return this.post(`${this.CONTROLLER_NAME}/add`, item)
     }
