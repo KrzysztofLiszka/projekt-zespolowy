@@ -1,0 +1,48 @@
+.dialog-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    h2 {
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+
+        label {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        input[type="file"] {
+            font-size: 14px;
+        }
+    }
+
+    .dialog-actions {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .save-button {
+            background-color: #28a745;
+            color: #fff;
+        }
+    }
+}

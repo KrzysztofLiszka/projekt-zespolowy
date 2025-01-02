@@ -1,4 +1,5 @@
 <div class="container">
     <app-table [dataSource]="dataSource" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders"
-        (addClicked)="onAdd()" (deleteClicked)="onDelete($event)" pageTitle="Wizualizacje" [displayAddButton]="true" />
+        (addClicked)="onAdd()" (deleteClicked)="onDelete($event)" pageTitle="Wizualizacje" [displayAddButton]="true"
+        [isRedirect]="true" [displayEdit]="false" />
 </div>

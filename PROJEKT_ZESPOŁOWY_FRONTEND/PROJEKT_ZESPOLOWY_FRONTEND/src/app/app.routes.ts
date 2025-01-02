@@ -11,6 +11,7 @@ import { UsersPageComponent } from './core/modules/auth/users-page/users-page.co
 import { PaymentsComponent } from './core/modules/payments/components/payments/payments.component';
 import { RolesPageComponent } from './core/modules/roles/roles-page/roles-page.component';
 import { VisualizationsPageComponent } from './core/modules/visualizations/visualizations-page/visualizations-page.component';
+import { VisualizationPageComponent } from './core/modules/visualizations/visualization-page/visualization-page.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPageComponent },
@@ -25,5 +26,6 @@ export const routes: Routes = [
     { path: 'users', component: UsersPageComponent },
     { path: 'payments', component: PaymentsComponent },
     { path: 'roles', component: RolesPageComponent },
-    { path: 'visualizations', component: VisualizationsPageComponent }
+    { path: 'visualizations', component: VisualizationsPageComponent },
+    { path: 'visualizations/:id', component: VisualizationPageComponent }
 ];

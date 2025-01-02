@@ -38,6 +38,14 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(visualizations);
         }
 
+        [HttpGet("{uuid:guid}")]
+        public async Task<IActionResult> GetVisualizationById([FromRoute] Guid uuid)
+        {
+            var visualizations = await _sqlRepository.GetAllAsync<Visualization>();
+            var visualizationToReturn = visualizations.FirstOrDefault(x => x.Uuid == uuid);
+            return Ok(visualizationToReturn);
+        }
+
         [HttpDelete("{uuid:guid}")]
         public async Task<IActionResult> DeleteVisualization([FromRoute] Guid uuid)
         {

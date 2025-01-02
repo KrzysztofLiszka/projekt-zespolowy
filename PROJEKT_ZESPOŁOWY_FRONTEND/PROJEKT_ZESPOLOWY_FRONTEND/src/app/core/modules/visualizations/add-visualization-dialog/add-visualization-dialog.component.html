@@ -1,0 +1,14 @@
+<div class="dialog-container">
+    <h2>Dodaj zdjęcie do wizualizacji</h2>
+    <form [formGroup]="visualizationForm">
+        <div class="form-field">
+            <label for="fileInput">Wybierz zdjęcie</label>
+            <input id="fileInput" type="file" (change)="onFileChange($event)" />
+        </div>
+    </form>
+
+    <div class="dialog-actions">
+        <button mat-button (click)="onCancel()">Anuluj</button>
+        <button mat-raised-button class="save-button" (click)="onSave()">Zapisz</button>
+    </div>
+</div>
