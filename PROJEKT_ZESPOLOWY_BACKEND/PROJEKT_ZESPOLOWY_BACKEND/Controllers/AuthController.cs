@@ -93,6 +93,23 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok();
         }
 
+        [Authorize]
+        [HttpPost("UpdateUser")]
+        public async Task<IActionResult> UpdateUser(UpdateUserDto updatedUser)
+        {
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await _sqlRepository.GetAsync<User>(userId);
+            user.Name = updatedUser.Name;
+            user.Surname = updatedUser.Surname;
+            user.Email = updatedUser.Email;
+            if (user == null)
+            {
+                return NotFound("User with this Id was not found!");
+            }
+            await _sqlRepository.UpdateAsync(user);
+            return Ok();
+        }
+
         private static byte[] ConvertFileToByte(IFormFile file)
         {
             using var ms = new MemoryStream();
@@ -100,6 +117,29 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             var fileBytes = ms.ToArray();
 
             return fileBytes;
+        }
+
+        [Authorize]
+        [HttpGet("current-user")]
+        public async Task<ActionResult> GetCurrentUser()
+        {
+            var userId = _currentUserService.GetCurrentUserId();
+
+            var user = await _sqlRepository.GetAsync<User>(userId);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            var userDto = new UpdateUserDto
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email,
+            };
+
+            return Ok(userDto);
         }
     }
 }

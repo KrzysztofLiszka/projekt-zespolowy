@@ -1,0 +1,24 @@
+<div class="dialog-container">
+    <h2>Edytuj Profil</h2>
+    <form [formGroup]="userForm">
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Imię</mat-label>
+            <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Nazwisko</mat-label>
+            <input matInput formControlName="surname" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+        </mat-form-field>
+    </form>
+
+    <div class="dialog-actions">
+        <button mat-button (click)="onCancel()">Anuluj</button>
+        <button mat-raised-button class="save-button" (click)="onSave()">Zapisz</button>
+    </div>
+</div>
