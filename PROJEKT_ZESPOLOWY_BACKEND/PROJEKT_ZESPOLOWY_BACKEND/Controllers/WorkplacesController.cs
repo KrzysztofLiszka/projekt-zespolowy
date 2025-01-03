@@ -18,9 +18,9 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         }
 
         [HttpPost("join")]
-        public async Task<IActionResult> JoinWorkplace([FromBody] Guid workplaceUuid)
+        public async Task<IActionResult> JoinWorkplace([FromQuery] string workplaceUuid)
         {
-            await _workplaceService.JoinWorkplace(workplaceUuid);
+            await _workplaceService.JoinWorkplace(Guid.Parse(workplaceUuid));
             return Ok("Joined workplace successfully.");
         }
 
@@ -33,7 +33,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             }
 
             await _workplaceService.AddNewWorkplace(workplace);
-            return Ok("Workplace added successfully.");
+            return Ok(new { message = "Schedulet added successfully." });
         }
 
         [HttpPut("edit")]
@@ -45,7 +45,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             }
 
             await _workplaceService.EditWorkplace(workplace);
-            return Ok("Workplace updated successfully.");
+            return Ok(new { message = "Schedulet added successfully." });
         }
 
         [HttpGet]
@@ -59,7 +59,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         public async Task<IActionResult> DeleteWorkplace([FromRoute] Guid uuid)
         {
             await _workplaceService.DeleteWorkplace(uuid);
-            return Ok("Workplace deleted successfully.");
+            return Ok(new { message = "Schedulet added successfully." });
         }
 
         [HttpGet("coworkers")]

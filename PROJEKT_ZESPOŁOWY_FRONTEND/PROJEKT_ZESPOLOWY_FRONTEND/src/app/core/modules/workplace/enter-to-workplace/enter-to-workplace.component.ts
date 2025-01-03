@@ -22,6 +22,10 @@ export class EnterToWorkplaceComponent implements OnInit {
         this.workplacesService.getAllItems().subscribe(res => { this.dataSource = res })
     }
 
+    joinWorkplace(id: string): void {
+        this.workplacesService.joinWorkplace(id).subscribe(res => console.log(res))
+    }
+
 
 
 }

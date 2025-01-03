@@ -15,12 +15,10 @@ export class JoinOrCreateWorkplaceComponent {
         this.router.navigateByUrl("/enter-to-workplace");
     }
 
-    //TODO:
     createWorkplace() {
         this.router.navigateByUrl("/create-workplace");
     }
 
-    //TODO:
     exit() {
         console.log('Wyjście do...');
     }

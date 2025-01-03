@@ -14,6 +14,7 @@ import { VisualizationsPageComponent } from './core/modules/visualizations/visua
 import { VisualizationPageComponent } from './core/modules/visualizations/visualization-page/visualization-page.component';
 import { DocumentationDetailsComponent } from './core/modules/documentation/components/documentation-details/documentation-details.component';
 import { EnterToWorkplaceComponent } from './core/modules/workplace/enter-to-workplace/enter-to-workplace.component';
+import { CreateWorkplaceFormComponent } from './core/modules/workplace/create-workplace-form/create-workplace-form.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPageComponent },
@@ -31,5 +32,6 @@ export const routes: Routes = [
     { path: 'roles', component: RolesPageComponent },
     { path: 'visualizations', component: VisualizationsPageComponent },
     { path: 'visualizations/:id', component: VisualizationPageComponent },
-    { path: 'enter-to-workplace', component: EnterToWorkplaceComponent }
+    { path: 'enter-to-workplace', component: EnterToWorkplaceComponent },
+    { path: 'create-workplace', component: CreateWorkplaceFormComponent }
 ];

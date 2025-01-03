@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="header">
+        Stwórz własny zespół
+    </div>
+    <form class="form-container" [formGroup]="workplaceForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <input id="name" type="text" formControlName="name" placeholder="Wprowadź nazwę zespołu" />
+            <div *ngIf="workplaceForm.get('name')?.invalid && workplaceForm.get('name')?.touched">
+                <small class="error">Nazwa zespołu jest wymagana.</small>
+            </div>
+        </div>
+        <div class="form-row">
+            <button type="submit" class="btn" [disabled]="workplaceForm.invalid">
+                Dodaj zespół
+            </button>
+        </div>
+
+    </form>
+</div>
