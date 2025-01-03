@@ -13,6 +13,7 @@ import { RolesPageComponent } from './core/modules/roles/roles-page/roles-page.c
 import { VisualizationsPageComponent } from './core/modules/visualizations/visualizations-page/visualizations-page.component';
 import { VisualizationPageComponent } from './core/modules/visualizations/visualization-page/visualization-page.component';
 import { DocumentationDetailsComponent } from './core/modules/documentation/components/documentation-details/documentation-details.component';
+import { EnterToWorkplaceComponent } from './core/modules/workplace/enter-to-workplace/enter-to-workplace.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPageComponent },
@@ -29,5 +30,6 @@ export const routes: Routes = [
     { path: 'payments', component: PaymentsComponent },
     { path: 'roles', component: RolesPageComponent },
     { path: 'visualizations', component: VisualizationsPageComponent },
-    { path: 'visualizations/:id', component: VisualizationPageComponent }
+    { path: 'visualizations/:id', component: VisualizationPageComponent },
+    { path: 'enter-to-workplace', component: EnterToWorkplaceComponent }
 ];

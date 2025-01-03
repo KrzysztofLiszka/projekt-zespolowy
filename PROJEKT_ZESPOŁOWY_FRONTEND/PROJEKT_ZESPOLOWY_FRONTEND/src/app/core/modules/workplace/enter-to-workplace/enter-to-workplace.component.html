@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="header">
+        Dołącz do istniejącego zespołu
+    </div>
+    <div class="table-container">
+        <div class="description-row">
+            <div class="column">
+                Nazwa
+            </div>
+            <div class="column">
+                Akcja
+            </div>
+        </div>
+        <div *ngFor="let workplace of dataSource" class="row">
+            <div class="column">
+                {{ workplace.name }}
+            </div>
+            <div class="column">
+                <button>Dołącz</button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-join-or-create-workplace',
@@ -8,14 +9,15 @@ import { Component } from '@angular/core';
 })
 export class JoinOrCreateWorkplaceComponent {
 
+    constructor(private router: Router) { }
     //TODO:
-    joinWorkplace() {
-        console.log('Dołączanie do miejsca pracy...');
+    joinWorkplace(): void {
+        this.router.navigateByUrl("/enter-to-workplace");
     }
 
     //TODO:
     createWorkplace() {
-        console.log('Tworzenie nowego miejsca pracy...');
+        this.router.navigateByUrl("/create-workplace");
     }
 
     //TODO:
