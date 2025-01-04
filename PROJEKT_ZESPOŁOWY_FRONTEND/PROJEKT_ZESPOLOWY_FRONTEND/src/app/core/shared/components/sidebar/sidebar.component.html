@@ -1,8 +1,9 @@
 <div *ngIf="isLoggedIn" class="side-bar">
     <div class="user-data">
         <div class="user-photo" (click)="openAddProfilePictureDialog()"
-            *ngIf="picture && picture!==null; else defaultImage"
-            [style.background-image]="'url(' + getBase64Data(picture) + ')'">
+            *ngIf="picture && picture!==null; else defaultImage">
+
+            <img [src]="picture" alt="User Photo" class="user-photo" (click)="openAddProfilePictureDialog()" />
         </div>
 
         <ng-template #defaultImage>

@@ -27,7 +27,6 @@ export class AddProfilePictureDialogComponent {
             this.reader.onload = () => {
                 const base64String = this.reader.result as string;
                 localStorage.setItem('picture', base64String);
-                console.log('Base64 string zapisany w localStorage:', base64String);
             };
         }
     }
@@ -41,7 +40,7 @@ export class AddProfilePictureDialogComponent {
         if (this.selectedFile) {
             const base64String = localStorage.getItem('picture');
             if (base64String) {
-                console.log('Base64 string z localStorage:', base64String);
+                localStorage.setItem('picture', base64String);
             }
         }
     }
