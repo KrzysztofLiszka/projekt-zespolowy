@@ -44,10 +44,6 @@ export class SidebarComponent implements OnInit {
         this.checkIfLoggedIn();
     }
 
-    klik(): void {
-        console.log('Picture:', this.picture);  // Debug log to check the picture
-    }
-
     private checkIfLoggedIn(): void {
         this.isLoggedIn = !!this.userName;
     }
@@ -61,7 +57,7 @@ export class SidebarComponent implements OnInit {
     }
 
     getBase64Data(byteFile?: any): any | null {
-        return byteFile ? `data:image/jpg;base64,${byteFile}` : null;
+        return `data:image/jpg;base64,${byteFile}`;
     }
 
     openAddProfilePictureDialog(): void {
