@@ -21,7 +21,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         public async Task<IActionResult> JoinWorkplace([FromQuery] string workplaceUuid)
         {
             await _workplaceService.JoinWorkplace(Guid.Parse(workplaceUuid));
-            return Ok("Joined workplace successfully.");
+            return Ok(new { message = "Schedulet added successfully." });
         }
 
         [HttpPost("add")]

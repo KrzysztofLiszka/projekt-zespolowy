@@ -37,8 +37,22 @@ export class LoginPageComponent implements OnDestroy {
                     if (res.picture !== null) {
                         localStorage.setItem('picture', res.picture);
                     }
-                    this.router.navigateByUrl('/home').then(() => {
-                        window.location.reload();
+
+                    this.authService.checkIfIsInWorkplace().subscribe({
+                        next: (isInWorkplace) => {
+                            const targetRoute = isInWorkplace ? '/home' : '/join-or-create-workplace';
+                            this.router.navigateByUrl(targetRoute).then(() => {
+                                window.location.reload();
+                            });
+                        },
+                        error: () => {
+                            this.snackBar.open('Nie udało się sprawdzić statusu zespołu!', 'BŁĄD', {
+                                duration: 3000,
+                                horizontalPosition: 'center',
+                                verticalPosition: 'top',
+                                panelClass: ['custom-snackbar'],
+                            });
+                        },
                     });
                 },
                 error: () => {
@@ -46,12 +60,13 @@ export class LoginPageComponent implements OnDestroy {
                         duration: 3000, // czas trwania w ms
                         horizontalPosition: 'center',
                         verticalPosition: 'top',
-                        panelClass: ['custom-snackbar']
+                        panelClass: ['custom-snackbar'],
                     });
                 },
             })
         );
     }
+
 
     goToRegisterPage(): void {
         this.router.navigateByUrl("/register");

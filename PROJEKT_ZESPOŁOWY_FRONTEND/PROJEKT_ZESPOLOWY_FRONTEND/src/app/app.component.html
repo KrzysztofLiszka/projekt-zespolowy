@@ -1,14 +1,14 @@
 <div class="app-wrapper">
-    <div *ngIf="isLoggedIn" class="topbar">
+    <div *ngIf="isLoggedIn && hasWorkplace" class="topbar">
         <app-topbar></app-topbar>
     </div>
-    <div class="main-content" [ngClass]="{'no-topbar': !isLoggedIn}">
-        <div *ngIf="isLoggedIn" class="side-bar">
+    <div class="main-content" [ngClass]="{'no-topbar': !isLoggedIn || !hasWorkplace}">
+        <div *ngIf="isLoggedIn && hasWorkplace" class="side-bar">
             <div class="sidebar">
                 <app-sidebar></app-sidebar>
             </div>
         </div>
-        <div class="content" [ngClass]="{'full-content': !isLoggedIn}">
+        <div class="content" [ngClass]="{'full-content': !isLoggedIn || !hasWorkplace}">
             <router-outlet></router-outlet>
         </div>
     </div>

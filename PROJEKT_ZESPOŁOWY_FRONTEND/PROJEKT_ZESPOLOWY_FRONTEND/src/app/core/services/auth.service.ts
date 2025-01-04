@@ -32,4 +32,10 @@ export class AuthService extends BaseApiService {
     getCurrentUser(): Observable<any> {
         return this.get<any>('Auth/current-user');
     }
+
+    checkIfIsInWorkplace(): Observable<any> {
+        return this.get<any>('Auth/CheckIfIsInWorkplace')
+    }
 }
+
+

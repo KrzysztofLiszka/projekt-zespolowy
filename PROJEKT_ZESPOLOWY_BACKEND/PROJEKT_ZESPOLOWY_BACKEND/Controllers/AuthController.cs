@@ -141,5 +141,25 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
 
             return Ok(userDto);
         }
+
+        [Authorize]
+        [HttpGet("CheckIfIsInWorkplace")]
+        public async Task<ActionResult<bool>> CheckIfIsInWorkplace()
+        {
+            var userId = _currentUserService.GetCurrentUserId();
+
+            var user = await _sqlRepository.GetAsync<User>(userId);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            var isInWorkplace = user.WorkplaceUuid != null;
+
+            return Ok(isInWorkplace);
+        }
+
+
     }
 }
