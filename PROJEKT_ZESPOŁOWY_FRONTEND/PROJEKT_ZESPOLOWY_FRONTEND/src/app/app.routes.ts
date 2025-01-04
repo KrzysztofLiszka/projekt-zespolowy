@@ -15,12 +15,12 @@ import { VisualizationPageComponent } from './core/modules/visualizations/visual
 import { DocumentationDetailsComponent } from './core/modules/documentation/components/documentation-details/documentation-details.component';
 import { EnterToWorkplaceComponent } from './core/modules/workplace/enter-to-workplace/enter-to-workplace.component';
 import { CreateWorkplaceFormComponent } from './core/modules/workplace/create-workplace-form/create-workplace-form.component';
+import { BoardPageComponent } from './core/modules/assignments/containers/board-page/board-page.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginPageComponent },
     { path: 'register', component: RegisterPageComponent },
-    { path: '', component: HomePageComponent },
-    { path: 'home', component: HomePageComponent },
+    { path: 'board', component: BoardPageComponent },
     { path: 'join-or-create-workplace', component: JoinOrCreateWorkplaceComponent },
     { path: 'coworkers', component: CoworkersPageComponent },
     { path: 'schedule', component: SchedulePageComponent },

@@ -26,7 +26,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             }
 
             await _assignmentService.AddNewAssignment(assignment);
-            return Ok("Assignment added successfully.");
+            return Ok(new { message = "Schedulet added successfully." });
         }
 
         [HttpPut("edit")]
@@ -38,7 +38,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             }
 
             await _assignmentService.EditAssignment(assignment);
-            return Ok("Assignment updated successfully.");
+            return Ok(new { message = "Schedulet added successfully." });
         }
 
         [HttpGet]
@@ -52,7 +52,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         public async Task<IActionResult> DeleteAssignment([FromRoute] Guid uuid)
         {
             await _assignmentService.DeleteAssignment(uuid);
-            return Ok("Assignment deleted successfully.");
+            return Ok(new { message = "Schedulet added successfully." });
         }
     }
 }

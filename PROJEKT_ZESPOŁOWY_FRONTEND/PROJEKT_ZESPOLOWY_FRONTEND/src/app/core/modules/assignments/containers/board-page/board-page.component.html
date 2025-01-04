@@ -1,0 +1,29 @@
+<div class="kanban-board">
+    <div class="header">
+        <div class="header-text">TABLICA</div>
+        <button (click)="openAddDialog()">DODAJ ZADANIE</button>
+    </div>
+
+    <div class="columns-wrapper" cdkDropListGroup>
+        <div *ngFor="let status of statuses" class="column-container"
+            [ngStyle]="{'background-color': getColumnColor(status)}" cdkDropList
+            [cdkDropListData]="getAssignmentsByStatus(status)" [cdkDropListConnectedTo]="statuses"
+            (cdkDropListDropped)="drop($event, status)">
+            <div class="header-wrapper">
+                <p>{{ getStatusName(status) }}</p>
+            </div>
+            <div class="assignments-container">
+                <div *ngFor="let assignment of getAssignmentsByStatus(status)" class="assignment" cdkDrag
+                    [cdkDragData]="assignment">
+                    <button (click)="deleteAssignment(assignment)">X</button>
+                    <div class="left-section" (click)="openEditDialog(assignment)">
+                        <p>{{ assignment.name }}</p>
+                    </div>
+                    <div class="right-section" (click)="openEditDialog(assignment)">
+                        <img src="assets/user-photo.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

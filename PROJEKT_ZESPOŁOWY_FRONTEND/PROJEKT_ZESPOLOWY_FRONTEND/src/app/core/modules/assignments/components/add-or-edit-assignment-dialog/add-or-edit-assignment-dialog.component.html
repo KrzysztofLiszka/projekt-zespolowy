@@ -1,0 +1,28 @@
+<div class="dialog-container">
+    <h2>{{ data.isEdit ? 'Edytuj Zadanie' : 'Dodaj Zadanie' }}</h2>
+    <form [formGroup]="assignmentForm">
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Nazwa</mat-label>
+            <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Opis</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+                <mat-option *ngFor="let status of statuses" [value]="status">
+                    {{ getStatusName(status) }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <div class="dialog-actions">
+        <button mat-button (click)="onCancel()">Anuluj</button>
+        <button mat-raised-button class="save-button" (click)="onSave()">Zapisz</button>
+    </div>
+</div>
