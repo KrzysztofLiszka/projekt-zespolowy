@@ -36,6 +36,10 @@ export class AuthService extends BaseApiService {
     checkIfIsInWorkplace(): Observable<any> {
         return this.get<any>('Auth/CheckIfIsInWorkplace')
     }
+
+    getUserProfilePicture(userId: string): Observable<any> {
+        return this.get<any>(`Auth/GetUserProfilePicture/${userId}`);
+    }
 }
 
 

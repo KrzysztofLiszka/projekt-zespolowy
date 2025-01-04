@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class SidebarComponent implements OnInit {
     isLoggedIn: boolean = false;
     currentRoute: string = '';
+
     get userName(): string {
         if (typeof window !== 'undefined' && localStorage) {
             return localStorage.getItem("username") || "";
@@ -25,11 +26,10 @@ export class SidebarComponent implements OnInit {
     get picture(): string | null {
         if (typeof window !== 'undefined' && localStorage) {
             const storedPicture = localStorage.getItem("picture");
-            return storedPicture
+            return storedPicture;
         }
         return null;
     }
-
 
     constructor(private router: Router, private dialog: MatDialog) { }
 
@@ -45,7 +45,7 @@ export class SidebarComponent implements OnInit {
     }
 
     klik(): void {
-        console.log(this.picture)
+        console.log('Picture:', this.picture);  // Debug log to check the picture
     }
 
     private checkIfLoggedIn(): void {
@@ -61,7 +61,7 @@ export class SidebarComponent implements OnInit {
     }
 
     getBase64Data(byteFile?: any): any | null {
-        return `data:image/jpg;base64,${byteFile}`;
+        return byteFile ? `data:image/jpg;base64,${byteFile}` : null;
     }
 
     openAddProfilePictureDialog(): void {

@@ -14,6 +14,7 @@ export class AddProfilePictureDialogComponent {
     selectedFileName: string | null = null;
     reader = new FileReader();
     private subscription: Subscription = new Subscription();
+
     constructor(private authService: AuthService) { }
 
     onFileSelected(event: Event): void {
@@ -21,6 +22,13 @@ export class AddProfilePictureDialogComponent {
         if (input.files && input.files[0]) {
             this.selectedFile = input.files[0];
             this.selectedFileName = input.files[0].name;
+
+            this.reader.readAsDataURL(this.selectedFile);
+            this.reader.onload = () => {
+                const base64String = this.reader.result as string;
+                localStorage.setItem('picture', base64String);
+                console.log('Base64 string zapisany w localStorage:', base64String);
+            };
         }
     }
 
@@ -31,17 +39,10 @@ export class AddProfilePictureDialogComponent {
 
     onUpload(): void {
         if (this.selectedFile) {
-            this.subscription.add(
-                this.authService.updateUserProfilePicture(this.selectedFile).subscribe({
-                    next: () => {
-                        const base64String = this.reader.result as string;
-                        localStorage.setItem('picture', base64String);
-                    },
-                    error: (err) => {
-                    },
-                })
-            );
+            const base64String = localStorage.getItem('picture');
+            if (base64String) {
+                console.log('Base64 string z localStorage:', base64String);
+            }
         }
     }
-
 }

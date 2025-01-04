@@ -20,7 +20,7 @@ import { BoardPageComponent } from './core/modules/assignments/containers/board-
 export const routes: Routes = [
     { path: 'login', component: LoginPageComponent },
     { path: 'register', component: RegisterPageComponent },
-    { path: 'board', component: BoardPageComponent },
+    { path: 'home', component: BoardPageComponent },
     { path: 'join-or-create-workplace', component: JoinOrCreateWorkplaceComponent },
     { path: 'coworkers', component: CoworkersPageComponent },
     { path: 'schedule', component: SchedulePageComponent },

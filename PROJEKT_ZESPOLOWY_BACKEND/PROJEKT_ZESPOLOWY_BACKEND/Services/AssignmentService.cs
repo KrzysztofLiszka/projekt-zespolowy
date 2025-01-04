@@ -22,7 +22,8 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
             {
                 Name = assignment.Name,
                 Description = assignment.Description,
-                Status = assignment.Status
+                Status = assignment.Status,
+                UserId = assignment.UserId
             };
             await _sqlRepository.AddAsync(newAssignment);
         }
@@ -39,6 +40,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
             editAssignment.Name = assignment.Name;
             editAssignment.Description = assignment.Description;
             editAssignment.Status = assignment.Status;
+            editAssignment.UserId = assignment.UserId;
             await _sqlRepository.UpdateAsync(editAssignment);
         }
 

@@ -19,6 +19,15 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Przypisz Użytkownika</mat-label>
+            <mat-select formControlName="userId">
+                <mat-option *ngFor="let coworker of coworkers" [value]="coworker.uuid">
+                    {{ coworker.fullName }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </form>
 
     <div class="dialog-actions">

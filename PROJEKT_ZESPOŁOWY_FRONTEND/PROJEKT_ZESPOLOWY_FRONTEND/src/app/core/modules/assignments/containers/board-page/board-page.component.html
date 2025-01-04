@@ -15,13 +15,15 @@
             <div class="assignments-container">
                 <div *ngFor="let assignment of getAssignmentsByStatus(status)" (click)="openEditDialog(assignment)"
                     class="assignment" cdkDrag [cdkDragData]="assignment">
-                    <button (click)="deleteAssignment(assignment)">X</button>
+                    <button (click)="deleteAssignment(assignment); $event.stopPropagation()" class="delete-button">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                     <div class="left-section">
                         <p>{{ assignment.name }}</p>
                     </div>
-                    <div class="right-section">
-                        <img src="assets/user-photo.jpg" />
-                    </div>
+                    <img *ngIf="userImages[assignment.userId]"
+                        [src]="'data:image/jpeg;base64,' + userImages[assignment.userId]" alt="User Profile Picture" />
+                    <img *ngIf="!userImages[assignment.userId]" src="assets/user-photo.jpg" alt="Default User Photo" />
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AssignmentsService } from '../../../../services/assignments.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -6,21 +6,21 @@ import { CdkDragDrop, DragDropModule, transferArrayItem } from '@angular/cdk/dra
 import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { AddOrEditAssignmentDialogComponent } from '../../components/add-or-edit-assignment-dialog/add-or-edit-assignment-dialog.component';
-
-export class AppModule { }
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     selector: 'app-board-page',
-    imports: [MatIcon, CommonModule, DragDropModule],
+    imports: [CommonModule, DragDropModule, MatIcon],
     templateUrl: './board-page.component.html',
     styleUrl: './board-page.component.scss'
 })
-export class BoardPageComponent {
+export class BoardPageComponent implements OnInit, OnDestroy {
     statuses = ['TO_DO', 'IN_PROGRESS', 'REVIEWED', 'DONE'];
     assignments: any[] = [];
     subscription = new Subscription();
+    userImages: { [userId: string]: string } = {};
 
-    constructor(private assignmentsService: AssignmentsService, private dialog: MatDialog) { }
+    constructor(private assignmentsService: AssignmentsService, private authService: AuthService, private dialog: MatDialog) { }
 
     ngOnInit(): void {
         this.loadAssignments();
@@ -34,6 +34,8 @@ export class BoardPageComponent {
         this.subscription.add(
             this.assignmentsService.getAllItems().subscribe(res => {
                 this.assignments = res;
+                // Load user images for each assignment
+                this.assignments.forEach(assignment => this.loadUserImage(assignment.userId));
             })
         );
     }
@@ -80,21 +82,24 @@ export class BoardPageComponent {
 
     drop(event: CdkDragDrop<any[]>, status: string): void {
         const assignment = event.item.data;
-        if (assignment.status === status) return;
 
+        if (assignment.status === status) return;
         const updatedAssignment = { ...assignment, status };
+
+        const previousAssignments = event.previousContainer.data;
+        const currentAssignments = event.container.data;
+
+        previousAssignments.splice(event.previousIndex, 1);
+
+        currentAssignments.unshift(updatedAssignment);
+
         this.assignmentsService.updateItem(updatedAssignment).subscribe((result) => {
-            transferArrayItem(
-                event.previousContainer.data,
-                event.container.data,
-                event.previousIndex,
-                event.currentIndex
-            );
             if (result) {
                 this.loadAssignments();
             }
         });
     }
+
 
     getAssignmentsByStatus(status: string): any[] {
         return this.assignments.filter(a => a.status === status);
@@ -120,9 +125,30 @@ export class BoardPageComponent {
         return colors[status as keyof typeof colors];
     }
 
-
     getBase64Data(assignment: any): string {
         return `data:image/jpg;base64,${assignment.profilePicture}`;
     }
 
+    loadUserImage(userId: string): void {
+        if (userId && !this.userImages[userId]) {
+            console.log(userId);
+            this.authService.getUserProfilePicture(userId).subscribe({
+                next: (response) => {
+                    const base64Image = response.data;
+                    if (base64Image) {
+                        this.userImages[userId] = base64Image;
+                    } else {
+                        console.error('Brak danych obrazu');
+                    }
+                },
+                error: (err) => {
+                    console.error('Failed to load image', err);
+                }
+            });
+        }
+    }
+
+    convertToBase64(imageData: any): string {
+        return btoa(String.fromCharCode(...new Uint8Array(imageData.Data)));
+    }
 }

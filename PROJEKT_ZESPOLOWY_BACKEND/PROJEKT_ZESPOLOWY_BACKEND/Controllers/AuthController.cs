@@ -160,6 +160,17 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(isInWorkplace);
         }
 
-
+        [Authorize]
+        [HttpGet("GetUserProfilePicture/{userId}")]
+        public async Task<IActionResult> GetUserProfilePicture(string userId)
+        {
+            var user = await _sqlRepository.GetAsync<User>(Guid.Parse(userId));
+            ImageDto image = new ImageDto();
+            if (user!=null)
+            {
+                image.Data = user.ProfilePicture;
+            }
+            return Ok(image);
+        }
     }
 }

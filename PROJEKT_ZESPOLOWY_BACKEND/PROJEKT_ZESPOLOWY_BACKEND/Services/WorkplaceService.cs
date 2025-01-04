@@ -66,6 +66,14 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
             return _mapper.Map<List<CooworkerDto>>(workersFromWorkplace);
         }
 
+        public async Task<List<CooworkerDto>> GetWorkersToAssignment()
+        {
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await _sqlRepository.GetAsync<User>(userId) ?? throw new Exception("User not found!");
+            var workersFromWorkplace = await _sqlRepository.GetQueryable<User>().Where(x => x.WorkplaceUuid == user.WorkplaceUuid).ToListAsync();
+            return _mapper.Map<List<CooworkerDto>>(workersFromWorkplace);
+        }
+
         public async Task<List<SalaryDto>> GetSalaryDtosAsync()
         {
             var userId = _currentUserService.GetCurrentUserId();

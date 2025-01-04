@@ -69,6 +69,14 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(coworkers);
         }
 
+
+        [HttpGet("workersToAssignment")]
+        public async Task<IActionResult> GetWorkersToAssignment()
+        {
+            var coworkers = await _workplaceService.GetWorkersToAssignment();
+            return Ok(coworkers);
+        }
+
         /*
         [HttpGet("salaries/{fromDate}/{toDate}")]
         public async Task<IActionResult> GetSalaries([FromRoute] DateTime? fromDate, [FromRoute] DateTime? toDate)
