@@ -3,7 +3,7 @@
         <div class="user-photo" (click)="openAddProfilePictureDialog()"
             *ngIf="picture && picture!==null; else defaultImage">
 
-            <img [src]="picture" alt="User Photo" class="user-photo" (click)="openAddProfilePictureDialog()" />
+            <img [src]="picture" alt="User Photo" class="user-photo" />
         </div>
 
         <ng-template #defaultImage>

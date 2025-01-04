@@ -102,6 +102,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             user.Name = updatedUser.Name;
             user.Surname = updatedUser.Surname;
             user.Email = updatedUser.Email;
+            user.ProfilePicture = updatedUser.ProfilePicture;
             if (user == null)
             {
                 return NotFound("User with this Id was not found!");
@@ -137,6 +138,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
                 Name = user.Name,
                 Surname = user.Surname,
                 Email = user.Email,
+                ProfilePicture=user.ProfilePicture,
             };
 
             return Ok(userDto);
