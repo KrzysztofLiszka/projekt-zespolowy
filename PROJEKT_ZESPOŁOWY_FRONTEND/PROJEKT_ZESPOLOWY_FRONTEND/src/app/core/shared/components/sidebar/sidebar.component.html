@@ -1,8 +1,8 @@
 <div *ngIf="isLoggedIn" class="side-bar">
     <div class="user-data">
         <!-- Wyświetlanie zdjęcia użytkownika lub domyślnego, jeśli brak zdjęcia -->
-        <div class="user-photo" (click)="openAddProfilePictureDialog()" *ngIf="picture; else defaultImage"
-            [style.background-image]="'url(' + picture + ')'">
+        <div class="user-photo" (click)="openAddProfilePictureDialog()"
+            *ngIf="picture && picture!==null; else defaultImage" [style.background-image]="'url(' + picture + ')'">
         </div>
 
         <!-- Domyślny obrazek użytkownika -->
