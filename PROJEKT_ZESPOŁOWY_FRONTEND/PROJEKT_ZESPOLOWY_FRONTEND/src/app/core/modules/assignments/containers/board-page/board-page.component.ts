@@ -112,10 +112,10 @@ export class BoardPageComponent {
 
     getColumnColor(status: string): string {
         const colors = {
-            TO_DO: 'rgba(45, 47, 51, 1)',  // granatowy
-            IN_PROGRESS: 'rgba(45, 47, 51, 1)',  // ciemny granatowy
-            REVIEWED: 'rgba(45, 47, 51, 1)',  // ciemny granatowy
-            DONE: 'rgba(45, 47, 51, 1)',  // granatowy
+            TO_DO: 'rgba(45, 47, 51, 1)',
+            IN_PROGRESS: 'rgba(45, 47, 51, 1)',
+            REVIEWED: 'rgba(45, 47, 51, 1)',
+            DONE: 'rgba(45, 47, 51, 1)',
         } as const;
         return colors[status as keyof typeof colors];
     }

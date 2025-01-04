@@ -13,13 +13,13 @@
                 <p>{{ getStatusName(status) }}</p>
             </div>
             <div class="assignments-container">
-                <div *ngFor="let assignment of getAssignmentsByStatus(status)" class="assignment" cdkDrag
-                    [cdkDragData]="assignment">
+                <div *ngFor="let assignment of getAssignmentsByStatus(status)" (click)="openEditDialog(assignment)"
+                    class="assignment" cdkDrag [cdkDragData]="assignment">
                     <button (click)="deleteAssignment(assignment)">X</button>
-                    <div class="left-section" (click)="openEditDialog(assignment)">
+                    <div class="left-section">
                         <p>{{ assignment.name }}</p>
                     </div>
-                    <div class="right-section" (click)="openEditDialog(assignment)">
+                    <div class="right-section">
                         <img src="assets/user-photo.jpg" />
                     </div>
                 </div>
