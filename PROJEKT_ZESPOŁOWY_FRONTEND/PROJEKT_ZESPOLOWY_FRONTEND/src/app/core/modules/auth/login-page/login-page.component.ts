@@ -34,6 +34,7 @@ export class LoginPageComponent implements OnDestroy {
                 next: (res) => {
                     localStorage.setItem('tokenPZ', res.token);
                     localStorage.setItem('username', res.username);
+                    console.log(res);
                     if (res.picture !== null) {
                         localStorage.setItem('picture', res.picture);
                     }

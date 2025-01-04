@@ -51,12 +51,12 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             {
                 profilePictureBytes = user.ProfilePicture;
             }
-
+            var base64ProfilePicture = Convert.ToBase64String(profilePictureBytes);
             return Ok(new
             {
                 token = jwtToken,
                 username = user.Name + " " + user.Surname,
-                picture = Convert.ToBase64String(profilePictureBytes)
+                picture = $"data:image/jpg;base64,{base64ProfilePicture}"
             });
         }
 
