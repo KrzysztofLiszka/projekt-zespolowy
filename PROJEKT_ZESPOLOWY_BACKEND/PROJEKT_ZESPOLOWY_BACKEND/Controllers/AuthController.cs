@@ -72,6 +72,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(new { message = "User registered" });
         }
 
+        [Authorize(Roles = $"{Roles.SystemAdmin}")]
         [HttpGet("all-users")]
         public async Task<ActionResult> GetUsers()
         {
@@ -79,7 +80,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(result);
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]
         [HttpPost("UpdateUserProfilePicture")]
         public async Task<IActionResult> UpdateUserProfilePicture()
         {
@@ -96,7 +97,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         }
 
         [HttpPost("UpdateUser")]
-        [AllowAnonymous]
+        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]
         public async Task<IActionResult> UpdateUser(UpdateUserDto updatedUser)
         {
             var userId = _currentUserService.GetCurrentUserId();
@@ -122,6 +123,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return fileBytes;
         }
 
+        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]
         [HttpGet("current-user")]
         public async Task<ActionResult> GetCurrentUser()
         {
