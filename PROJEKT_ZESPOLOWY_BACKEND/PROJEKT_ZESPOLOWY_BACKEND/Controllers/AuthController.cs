@@ -165,7 +165,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(isInWorkplace);
         }
 
-        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]
+        [AllowAnonymous]
         [HttpGet("GetUserProfilePicture/{userId}")]
         public async Task<IActionResult> GetUserProfilePicture(string userId)
         {
