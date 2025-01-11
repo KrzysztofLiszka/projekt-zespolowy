@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PROJEKT_ZESPOLOWY_BACKEND.Constants;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Services;
 
@@ -7,7 +8,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]
     public class WorkplacesController : ControllerBase
     {
         private readonly IWorkplaceService _workplaceService;
@@ -17,6 +18,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             _workplaceService = workplaceService;
         }
 
+        [AllowAnonymous]
         [HttpPost("join")]
         public async Task<IActionResult> JoinWorkplace([FromQuery] string workplaceUuid)
         {
@@ -24,6 +26,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(new { message = "Schedulet added successfully." });
         }
 
+        [AllowAnonymous]
         [HttpPost("add")]
         public async Task<IActionResult> AddNewWorkplace([FromBody] NewWorkplaceDto workplace)
         {
@@ -49,6 +52,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetWorkplaces()
         {
             var workplaces = await _workplaceService.GetWorkplaces();
@@ -62,6 +66,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(new { message = "Schedulet added successfully." });
         }
 
+        [AllowAnonymous]
         [HttpGet("coworkers")]
         public async Task<IActionResult> GetCoworkers()
         {
@@ -69,7 +74,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(coworkers);
         }
 
-
+        [AllowAnonymous]
         [HttpGet("workersToAssignment")]
         public async Task<IActionResult> GetWorkersToAssignment()
         {

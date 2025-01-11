@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NotificationsService } from './notifications.service';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,7 @@ export class BaseApiService {
 
     private readonly apiUrl = 'https://localhost:7218/api';
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, protected notificationsService: NotificationsService) { }
 
     protected get<T>(url: string): Observable<T> {
         return this.httpClient.get<T>(`${this.apiUrl}/${url}`);

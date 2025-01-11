@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using PROJEKT_ZESPOLOWY_BACKEND.Constants;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 using PROJEKT_ZESPOLOWY_BACKEND.SqlRepository;
@@ -25,6 +26,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
             var userId = _currentUserService.GetCurrentUserId();
             var user = await _sqlRepository.GetAsync<User>(userId);
             if (user == null) return;
+            user.RoleName = Roles.Worker;
             user.WorkplaceUuid = workplaceUuid;
             await _sqlRepository.UpdateAsync(user);
         }
@@ -35,7 +37,13 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
             {
                 Name = workplace.Name
             };
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await _sqlRepository.GetAsync<User>(userId);
+            if (user == null) return;
+            user.RoleName = Roles.WorkspaceOwner;
             await _sqlRepository.AddAsync(newWorkplace);
+            user.WorkplaceUuid = newWorkplace.Uuid;
+            await _sqlRepository.UpdateAsync(user);
         }
 
         public async Task DeleteWorkplace(Guid uuid)

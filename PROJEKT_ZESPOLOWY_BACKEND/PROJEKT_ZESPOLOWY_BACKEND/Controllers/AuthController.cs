@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PROJEKT_ZESPOLOWY_BACKEND.Constants;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 using PROJEKT_ZESPOLOWY_BACKEND.Services;
@@ -12,6 +13,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = Roles.SystemAdmin)]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
@@ -27,6 +29,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult> Login(LoginDto loginDto)
         {
@@ -56,12 +59,12 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             {
                 token = jwtToken,
                 username = user.Name + " " + user.Surname,
-                picture = $"data:image/jpg;base64,{base64ProfilePicture}"
+                picture = $"data:image/jpg;base64,{base64ProfilePicture}",
+                rolename = user.RoleName
             });
         }
 
-
-
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult> Register(RegisterDto registerDto)
         {
@@ -69,7 +72,6 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(new { message = "User registered" });
         }
 
-        [Authorize]
         [HttpGet("all-users")]
         public async Task<ActionResult> GetUsers()
         {
@@ -77,7 +79,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(result);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpPost("UpdateUserProfilePicture")]
         public async Task<IActionResult> UpdateUserProfilePicture()
         {
@@ -93,7 +95,6 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok();
         }
 
-        [Authorize]
         [HttpPost("UpdateUser")]
         public async Task<IActionResult> UpdateUser(UpdateUserDto updatedUser)
         {
@@ -120,7 +121,6 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return fileBytes;
         }
 
-        [Authorize]
         [HttpGet("current-user")]
         public async Task<ActionResult> GetCurrentUser()
         {
@@ -144,7 +144,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(userDto);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("CheckIfIsInWorkplace")]
         public async Task<ActionResult<bool>> CheckIfIsInWorkplace()
         {

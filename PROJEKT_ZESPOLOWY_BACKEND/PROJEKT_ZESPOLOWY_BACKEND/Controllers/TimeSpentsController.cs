@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PROJEKT_ZESPOLOWY_BACKEND.Constants;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 using PROJEKT_ZESPOLOWY_BACKEND.SqlRepository;
@@ -8,7 +9,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]
     public class TimeSpentsController : ControllerBase
     {
         private readonly ISqlRepository _sqlRepository;
@@ -30,7 +31,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(new { message = "TimeSpent added successfully." });
         }
 
-            [HttpPut("edit")]
+        [HttpPut("edit")]
         public async Task<IActionResult> EditTimeSpent([FromBody] EditTimeSpentDto editTimeSpent)
         {
             var timeSpent = await _sqlRepository.GetAsync<TimeSpent>(editTimeSpent.Uuid);

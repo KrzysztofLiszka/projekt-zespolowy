@@ -40,7 +40,6 @@ export class DocumentationPageComponent implements OnInit {
             if (result) {
                 this.documentationsService.addItem(result).subscribe(() => {
                     this.subscribeDocumentations();
-                    this.notificationsService.showTypicalSuccessNotification();
                 });
             }
         });
