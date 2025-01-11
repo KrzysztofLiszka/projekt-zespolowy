@@ -4,6 +4,7 @@ import { DocumentationsService } from '../../../../services/documentations.servi
 import { AddOrEditDocumentationDialogComponent } from '../add-or-edit-documentation-dialog/add-or-edit-documentation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { NotificationsService } from '../../../../services/notifications.service';
 
 @Component({
     selector: 'app-documentation-page',
@@ -19,7 +20,7 @@ export class DocumentationPageComponent implements OnInit {
 
     constructor(
         private documentationsService: DocumentationsService,
-        private dialog: MatDialog
+        private dialog: MatDialog, private notificationsService: NotificationsService
     ) { }
 
     ngOnInit(): void {
@@ -39,6 +40,7 @@ export class DocumentationPageComponent implements OnInit {
             if (result) {
                 this.documentationsService.addItem(result).subscribe(() => {
                     this.subscribeDocumentations();
+                    this.notificationsService.showTypicalSuccessNotification();
                 });
             }
         });
