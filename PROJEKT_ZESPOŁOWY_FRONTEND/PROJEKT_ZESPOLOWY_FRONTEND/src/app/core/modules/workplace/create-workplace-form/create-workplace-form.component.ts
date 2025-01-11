@@ -25,6 +25,10 @@ export class CreateWorkplaceFormComponent {
                 (response) => {
                     alert('Zespół został pomyślnie dodany!');
                     this.workplaceForm.reset();
+                    localStorage.removeItem("tokenPZ");
+                    localStorage.removeItem("username");
+                    localStorage.removeItem("picture");
+                    localStorage.removeItem("rolename");
                     this.router.navigateByUrl('/login');
                 },
                 (error) => {
