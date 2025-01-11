@@ -24,10 +24,7 @@ export class EnterToWorkplaceComponent implements OnInit {
     }
 
     joinWorkplace(id: string): void {
-        this.workplacesService.joinWorkplace(id).subscribe(res => this.router.navigateByUrl('/home'))
+        this.workplacesService.joinWorkplace(id).subscribe(res => this.router.navigateByUrl('/login'))
 
     }
-
-
-
 }

@@ -35,7 +35,6 @@ export class LoginPageComponent implements OnDestroy {
                     localStorage.setItem('tokenPZ', res.token);
                     localStorage.setItem('username', res.username);
                     localStorage.setItem('rolename', res.rolename);
-                    console.log(res);
                     if (res.picture !== null) {
                         localStorage.setItem('picture', res.picture);
                     }
@@ -59,7 +58,7 @@ export class LoginPageComponent implements OnDestroy {
                 },
                 error: () => {
                     this.snackBar.open('Nieprawidłowy login lub hasło!', 'BŁĄD', {
-                        duration: 3000, // czas trwania w ms
+                        duration: 3000,
                         horizontalPosition: 'center',
                         verticalPosition: 'top',
                         panelClass: ['custom-snackbar'],
