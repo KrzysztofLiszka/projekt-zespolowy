@@ -96,6 +96,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         }
 
         [HttpPost("UpdateUser")]
+        [AllowAnonymous]
         public async Task<IActionResult> UpdateUser(UpdateUserDto updatedUser)
         {
             var userId = _currentUserService.GetCurrentUserId();
@@ -162,7 +163,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(isInWorkplace);
         }
 
-        [Authorize]
+        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]
         [HttpGet("GetUserProfilePicture/{userId}")]
         public async Task<IActionResult> GetUserProfilePicture(string userId)
         {
