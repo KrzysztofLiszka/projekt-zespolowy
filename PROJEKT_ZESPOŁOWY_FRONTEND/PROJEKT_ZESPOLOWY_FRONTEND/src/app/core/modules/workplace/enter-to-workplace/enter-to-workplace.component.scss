@@ -36,5 +36,35 @@
             align-items: center;
             padding: 10px;
         }
+
+        .row .join-button {
+            background-color: #4CAF50;
+            /* Zielony kolor */
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .row .join-button i {
+            font-size: 16px;
+        }
+
+        .row .join-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .row .join-button:active {
+            background-color: #397d3a;
+        }
     }
 }

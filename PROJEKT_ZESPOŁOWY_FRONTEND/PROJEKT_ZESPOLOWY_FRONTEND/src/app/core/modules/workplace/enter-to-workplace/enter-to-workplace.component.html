@@ -8,7 +8,6 @@
                 Nazwa
             </div>
             <div class="column">
-                Akcja
             </div>
         </div>
         <div *ngFor="let workplace of dataSource" class="row">
@@ -16,9 +15,10 @@
                 {{ workplace.name }}
             </div>
             <div class="column">
-                <button (click)="joinWorkplace(workplace.uuid)">Dołącz</button>
+                <button (click)="joinWorkplace(workplace.uuid)" class="join-button">
+                    <i class="fa fa-user-plus"></i> Dołącz
+                </button>
             </div>
         </div>
-
     </div>
 </div>
