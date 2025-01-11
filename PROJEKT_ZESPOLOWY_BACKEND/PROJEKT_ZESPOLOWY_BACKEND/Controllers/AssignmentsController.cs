@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PROJEKT_ZESPOLOWY_BACKEND.Constants;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Services;
 
@@ -7,7 +8,8 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}")]
+
     public class AssignmentsController : ControllerBase
     {
         private readonly IAssignmentService _assignmentService;

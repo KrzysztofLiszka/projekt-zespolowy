@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { BaseApiService } from './base-api.service';
 
 @Injectable({
@@ -17,14 +17,21 @@ export class AssignmentsService extends BaseApiService {
     }
 
     addItem(item: any): Observable<any> {
-        return this.post(`${this.CONTROLLER_NAME}/add`, item);
+        return this.post(`${this.CONTROLLER_NAME}/add`, item).pipe(
+            tap(() => this.notificationsService.showTypicalSuccessNotification())
+        );
     }
 
     updateItem(item: any): Observable<any> {
-        return this.put(`${this.CONTROLLER_NAME}/edit`, item);
+        return this.put(`${this.CONTROLLER_NAME}/edit`, item).pipe(
+            tap(() => this.notificationsService.showTypicalSuccessNotification())
+        );
     }
 
     deleteItem(id: string): Observable<any> {
-        return this.delete(`${this.CONTROLLER_NAME}/${id}`);
+        return this.delete(`${this.CONTROLLER_NAME}/${id}`).pipe(
+            tap(() => this.notificationsService.showTypicalSuccessNotification())
+        );
     }
+
 }

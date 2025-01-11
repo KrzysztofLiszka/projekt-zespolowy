@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, tap } from "rxjs";
 import { BaseApiService } from "./base-api.service";
 
 
@@ -15,10 +15,15 @@ export class WorkplacesService extends BaseApiService {
     }
 
     joinWorkplace(id: string): Observable<any> {
-        return this.post(`${this.CONTROLLER_NAME}/join?workplaceUuid=${encodeURIComponent(id)}`, null);
+        return this.post(`${this.CONTROLLER_NAME}/join?workplaceUuid=${encodeURIComponent(id)}`, null).pipe(
+            tap(() => this.notificationsService.showTypicalSuccessNotification())
+        );
     }
 
     addNewWorkplace(workplace: any): Observable<any> {
-        return this.post(`${this.CONTROLLER_NAME}/add`, workplace);
+        return this.post(`${this.CONTROLLER_NAME}/add`, workplace).pipe(
+            tap(() => this.notificationsService.showTypicalSuccessNotification())
+        );
     }
+
 }

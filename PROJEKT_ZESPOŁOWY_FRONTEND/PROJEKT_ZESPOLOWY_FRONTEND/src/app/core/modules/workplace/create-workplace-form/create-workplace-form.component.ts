@@ -25,7 +25,7 @@ export class CreateWorkplaceFormComponent {
                 (response) => {
                     alert('Zespół został pomyślnie dodany!');
                     this.workplaceForm.reset();
-                    this.router.navigateByUrl('/enter-to-workplace');
+                    this.router.navigateByUrl('/home');
                 },
                 (error) => {
                     console.error('Wystąpił błąd:', error);

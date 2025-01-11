@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PROJEKT_ZESPOLOWY_BACKEND.Constants;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 using PROJEKT_ZESPOLOWY_BACKEND.Services;
@@ -10,7 +11,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}")]
     public class VisualizationController : ControllerBase
     {
         private readonly IVisualizationService _visualizationService;

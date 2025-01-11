@@ -1,48 +1,22 @@
 <div *ngIf="isLoggedIn" class="side-bar">
-    <div class="user-data">
-        <div class="user-photo" (click)="openAddProfilePictureDialog()"
-            *ngIf="picture && picture!==null; else defaultImage">
-
-            <img [src]="picture" alt="User Photo" class="user-photo" />
-        </div>
-
-        <ng-template #defaultImage>
-            <div (click)="openAddProfilePictureDialog()" class="user-photo">
-                <img src="../../../../../assets/user-photo.jpg" alt="Default User Photo" />
-            </div>
-        </ng-template>
-
-        <div class="user-name">{{userName}}</div>
+  <div class="user-data">
+    <div class="user-photo" (click)="openAddProfilePictureDialog()"
+      *ngIf="picture && picture!==null; else defaultImage">
+      <img [src]="picture" alt="User Photo" class="user-photo" />
     </div>
+    <ng-template #defaultImage>
+      <div (click)="openAddProfilePictureDialog()" class="user-photo">
+        <img src="../../../../../assets/user-photo.jpg" alt="Default User Photo" />
+      </div>
+    </ng-template>
+    <div class="user-name">{{ userName }}</div>
+  </div>
 
-    <div class="buttons">
-        <!-- Lista przycisków do nawigacji -->
-        <button [class.active]="isActiveRoute('home')" (click)="navigateTo('home')">
-            <span>TABLICA</span><i class="fas fa-home fa-lg"></i>
-        </button>
-        <button [class.active]="isActiveRoute('coworkers')" (click)="navigateTo('coworkers')">
-            <span>WSPÓŁPRACOWNICY</span><i class="fas fa-users fa-lg"></i>
-        </button>
-        <button [class.active]="isActiveRoute('schedule')" (click)="navigateTo('schedule')">
-            <span>HARMONOGRAM</span><i class="fas fa-calendar-check fa-lg"></i>
-        </button>
-        <button [class.active]="isActiveRoute('time-spents')" (click)="navigateTo('time-spents')">
-            <span>SPĘDZONY CZAS</span><i class="fas fa-clock fa-lg"></i>
-        </button>
-        <button [class.active]="isActiveRoute('documentations')" (click)="navigateTo('documentations')">
-            <span>DOKUMENTACJE</span><i class="fas fa-file-alt fa-lg"></i>
-        </button>
-        <button [class.active]="isActiveRoute('visualizations')" (click)="navigateTo('visualizations')">
-            <span>WIZUALIZACJE</span><i class="fas fa-chart-line fa-lg"></i>
-        </button>
-        <button [class.active]="isActiveRoute('roles')" (click)="navigateTo('roles')">
-            <span>ROLE</span><i class="fas fa-cogs fa-lg"></i>
-        </button>
-        <button [class.active]="isActiveRoute('users')" (click)="navigateTo('users')">
-            <span>UŻYTKOWNICY</span><i class="fas fa-user-cog fa-lg"></i>
-        </button>
-        <button [class.active]="isActiveRoute('payments')" (click)="navigateTo('payments')">
-            <span>WYPŁATY</span><i class="fas fa-wallet fa-lg"></i>
-        </button>
-    </div>
+  <div class="buttons">
+    <button *ngFor="let item of filteredMenuItems" [class.active]="isActiveRoute(item.redirectTo)"
+      (click)="navigateTo(item.redirectTo)">
+      <span>{{ item.text }}</span>
+      <i [class]="item.iconClass"></i>
+    </button>
+  </div>
 </div>
