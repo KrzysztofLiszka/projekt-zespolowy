@@ -136,8 +136,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
                     const base64Image = response.data;
                     if (base64Image) {
                         this.userImages[userId] = base64Image;
-                    } else {
-                        console.error('Brak danych obrazu');
                     }
                 },
                 error: (err) => {
