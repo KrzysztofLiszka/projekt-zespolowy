@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
         { text: "ROLE", redirectTo: "roles", iconClass: "fas fa-cogs fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKSPACE_OWNER] },
         { text: "UŻYTKOWNICY", redirectTo: "users", iconClass: "fas fa-user-cog fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN] },
         { text: "WYPŁATY", redirectTo: "payments", iconClass: "fas fa-wallet fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.ACCOUNTANT, Roles.WORKSPACE_OWNER] },
-      ];
+    ];
 
     get filteredMenuItems(): any[] {
         return this.menuItems.filter(item => item.rolesThatSeeSection.includes(this.userRole));
