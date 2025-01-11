@@ -13,7 +13,6 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = Roles.SystemAdmin)]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
