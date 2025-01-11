@@ -1,5 +1,5 @@
 <div class="dialog-container">
-    <h2>{{ data.isEdit ? 'Edytuj spędzony czas' : 'Dodaj Spęzony czas' }}</h2>
+    <h2>{{ data.isEdit ? 'Edytuj spędzony czas' : 'Dodaj spędzony czas' }}</h2>
     <form [formGroup]="timeSpentForm">
         <mat-form-field appearance="fill" class="form-field">
             <mat-label>Data</mat-label>
@@ -7,8 +7,8 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Spędzone godziny</mat-label>
-            <input matInput formControlName="spentHours" type="time" />
+            <mat-label>Spędzone czas (w godzinach)</mat-label>
+            <input matInput formControlName="spentHours" type="number" min="0" />
         </mat-form-field>
     </form>
 

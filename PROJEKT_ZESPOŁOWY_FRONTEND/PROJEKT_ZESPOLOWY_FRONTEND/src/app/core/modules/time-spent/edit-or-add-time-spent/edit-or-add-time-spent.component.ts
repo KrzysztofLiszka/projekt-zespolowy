@@ -23,12 +23,11 @@ export class EditOrAddTimeSpentComponent {
 
         const timeSpent = data.timeSpent || {};
         const date = timeSpent.date ? new Date(timeSpent.date) : new Date();
-        const hours = timeSpent.spentHours ? timeSpent.spentHours.toString().padStart(2, '0') : '00';
-        const minutes = '00';
+        const spentHours = timeSpent.spentHours || 0; // Default to 0 hours if not provided
 
         this.timeSpentForm = this.fb.group({
             date: [date.toISOString().split('T')[0], Validators.required],
-            spentHours: [`${hours}:${minutes}`, Validators.required],
+            spentHours: [spentHours, [Validators.required, Validators.min(0)]],
             uuid: [timeSpent.uuid || '']
         });
     }
@@ -42,13 +41,10 @@ export class EditOrAddTimeSpentComponent {
             const formValue = this.timeSpentForm.value;
 
             const date = new Date(formValue.date);
-            const hours = formValue.spentHours.split(':')[0];
-            const minutes = formValue.spentHours.split(':')[1];
+            const spentHours = parseInt(formValue.spentHours, 10);
 
-            date.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+            date.setHours(0, 0, 0, 0); // Reset time to midnight
             const formattedDate = date.toISOString();
-
-            const spentHours = parseInt(formValue.spentHours.split(':')[0]);
 
             const dataToSave = {
                 uuid: formValue.uuid,
@@ -56,7 +52,7 @@ export class EditOrAddTimeSpentComponent {
                 spentHours: spentHours
             };
 
-            console.log('Data to save:',);
+            console.log('Data to save:', dataToSave);
             this.dialogRef.close(dataToSave);
         } else {
             console.log('Form is invalid:', this.timeSpentForm);

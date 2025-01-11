@@ -23,7 +23,7 @@
                     </div>
                     <img *ngIf="userImages[assignment.userId]"
                         [src]="'data:image/jpeg;base64,' + userImages[assignment.userId]" alt="User Profile Picture" />
-                    <img *ngIf="!userImages[assignment.userId]" src="assets/user-photo.jpg" alt="Default User Photo" />
+                    <div *ngIf="!userImages[assignment.userId]" class="no-photo"></div>
                 </div>
             </div>
         </div>

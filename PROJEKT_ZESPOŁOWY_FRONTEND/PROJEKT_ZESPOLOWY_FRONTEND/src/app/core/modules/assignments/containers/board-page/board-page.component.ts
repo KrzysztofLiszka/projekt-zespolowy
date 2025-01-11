@@ -7,7 +7,6 @@ import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { AddOrEditAssignmentDialogComponent } from '../../components/add-or-edit-assignment-dialog/add-or-edit-assignment-dialog.component';
 import { AuthService } from '../../../../services/auth.service';
-
 @Component({
     selector: 'app-board-page',
     imports: [CommonModule, DragDropModule, MatIcon],
