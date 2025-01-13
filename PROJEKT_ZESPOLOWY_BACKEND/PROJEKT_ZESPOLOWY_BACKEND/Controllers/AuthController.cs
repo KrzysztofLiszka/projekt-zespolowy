@@ -113,6 +113,20 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok();
         }
 
+        [HttpPost("UpdateUserRole")]
+        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.WorkspaceOwner}")]
+        public async Task<IActionResult> UpdateUser(string newUserRole, Guid userId)
+        {
+            var user = await _sqlRepository.GetAsync<User>(userId);
+            if (user == null)
+            {
+                return NotFound("User with this Id was not found!");
+            }
+            user.RoleName = newUserRole;
+            await _sqlRepository.UpdateAsync(user);
+            return Ok();
+        }
+
         private static byte[] ConvertFileToByte(IFormFile file)
         {
             using var ms = new MemoryStream();
