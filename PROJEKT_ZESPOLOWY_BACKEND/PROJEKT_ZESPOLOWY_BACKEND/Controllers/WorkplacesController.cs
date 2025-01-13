@@ -91,9 +91,9 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         }*/
 
         [HttpGet("salaries")]
-        public async Task<IActionResult> GetSalaries()
+        public async Task<IActionResult> GetSalaries([FromQuery] DateTime? from, [FromQuery] DateTime? to)
         {
-            var salaries = await _workplaceService.GetSalaryDtosAsync();
+            var salaries = await _workplaceService.GetSalaryDtosAsync(from, to);
             return Ok(salaries);
         }
     }

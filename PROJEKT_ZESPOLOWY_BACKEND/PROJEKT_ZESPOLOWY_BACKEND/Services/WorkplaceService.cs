@@ -82,25 +82,53 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
             return _mapper.Map<List<CooworkerDto>>(workersFromWorkplace);
         }
 
-        public async Task<List<SalaryDto>> GetSalaryDtosAsync()
+        public async Task<List<SalaryDto>> GetSalaryDtosAsync(DateTime? from, DateTime? to)
         {
+            // Ensure 'from' and 'to' are in UTC and properly formatted
+            if (from.HasValue)
+                from = from.Value.Kind == DateTimeKind.Unspecified
+                    ? DateTime.SpecifyKind(from.Value, DateTimeKind.Utc)
+                    : from.Value.ToUniversalTime();
+
+            if (to.HasValue)
+                to = to.Value.Kind == DateTimeKind.Unspecified
+                    ? DateTime.SpecifyKind(to.Value, DateTimeKind.Utc)
+                    : to.Value.ToUniversalTime();
+
             var userId = _currentUserService.GetCurrentUserId();
             var user = await _sqlRepository.GetAsync<User>(userId) ?? throw new Exception("User not found!");
-            var workersFromWorkplace = await _sqlRepository.GetQueryable<User>().Where(x => x.WorkplaceUuid == user.WorkplaceUuid && x.Uuid != user.Uuid).ToListAsync();
+            var workersFromWorkplace = await _sqlRepository.GetQueryable<User>()
+                .Where(x => x.WorkplaceUuid == user.WorkplaceUuid && x.Uuid != user.Uuid)
+                .ToListAsync();
 
             var result = new List<SalaryDto>();
+
             foreach (var worker in workersFromWorkplace)
             {
-                var timeSpents = await _sqlRepository.GetQueryable<TimeSpent>().Where(x => x.CreatedBy == worker.Uuid).ToListAsync();//where...
-                var amount = timeSpents.Sum(x => x.SpentHours);
-                var salaryDto = new SalaryDto
+                // Get queryable data for time spent
+                var timeSpentsQuery = _sqlRepository.GetQueryable<TimeSpent>()
+                    .Where(x => x.CreatedBy == worker.Uuid);
+
+                // Apply filters only if both 'from' and 'to' are provided
+                if (from.HasValue && to.HasValue)
                 {
-                    FullName = worker.Name + " " + worker.Surname,
-                    Amount = amount * worker.HourlyRate
-                };
-                result.Add(salaryDto);
+                    timeSpentsQuery = timeSpentsQuery
+                        .Where(x => x.CreatedAt >= from && x.CreatedAt <= to);
+                }
+
+                // Fetch data and calculate salary
+                var timeSpents = await timeSpentsQuery.ToListAsync();
+                var totalHours = timeSpents.Sum(x => x.SpentHours);
+
+                result.Add(new SalaryDto
+                {
+                    FullName = $"{worker.Name} {worker.Surname}",
+                    Amount = totalHours * worker.HourlyRate
+                });
             }
+
             return result;
         }
+
     }
 }

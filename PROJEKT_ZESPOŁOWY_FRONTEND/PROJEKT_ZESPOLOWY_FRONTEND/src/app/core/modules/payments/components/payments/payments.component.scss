@@ -7,3 +7,33 @@
     background-color: variables.$primary-grey-color;
     border: solid 2px white;
 }
+
+.filters {
+    gap: 2px
+}
+
+mat-form-field {
+    margin-top: 3%;
+    margin-left: 2px;
+}
+
+mat-label {
+    color: white;
+    font-size: 15pt;
+}
+
+:host ::ng-deep .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+    background-color: #656262;
+    border: 2px solid #e4e4e4;
+    transform: scale(0.9);
+}
+
+mat-icon {
+    color: #e4e4e4;
+    transform: scale(1.6);
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.8);
+    }
+}

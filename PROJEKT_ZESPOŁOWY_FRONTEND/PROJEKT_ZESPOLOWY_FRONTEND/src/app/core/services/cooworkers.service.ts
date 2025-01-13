@@ -16,7 +16,8 @@ export class CooworkersService extends BaseApiService {
         return this.getAll<any>(`${this.CONTROLLER_NAME}/workersToAssignment`);
     }
 
-    getSalaries(): Observable<any[]> {
-        return this.getAll<any>(`Workplaces/salaries`);
+    getSalaries(from: Date | null, to: Date | null): Observable<any[]> {
+        if (!from || !to) return this.getPaymentsFromTimeline<any>();
+        return this.getPaymentsFromTimeline<any>(from.toDateString(), to.toDateString());
     }
 }

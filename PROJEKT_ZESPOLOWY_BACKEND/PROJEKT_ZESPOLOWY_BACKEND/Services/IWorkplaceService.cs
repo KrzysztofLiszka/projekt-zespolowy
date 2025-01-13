@@ -11,6 +11,6 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
         Task JoinWorkplace(Guid workplaceUuid);
         Task<List<CooworkerDto>> GetCooworkers();
         Task<List<CooworkerDto>> GetWorkersToAssignment();
-        Task<List<SalaryDto>> GetSalaryDtosAsync();
+        Task<List<SalaryDto>> GetSalaryDtosAsync(DateTime? from, DateTime? to);
     }
 }

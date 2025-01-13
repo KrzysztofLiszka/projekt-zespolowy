@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NotificationsService } from './notifications.service';
@@ -30,5 +30,13 @@ export class BaseApiService {
 
     protected delete<T>(url: string): Observable<T> {
         return this.httpClient.delete<T>(`${this.apiUrl}/${url}`);
+    }
+
+    protected getPaymentsFromTimeline<T>(fromDate?: string, toDate?: string): Observable<T[]> {
+        if (!fromDate || !toDate) return this.httpClient.get<T[]>(`${this.apiUrl}/Workplaces/Salaries`);
+        let params = new HttpParams()
+            .set('from', fromDate)
+            .set('to', toDate);
+        return this.httpClient.get<T[]>(`${this.apiUrl}/Workplaces/Salaries`, { params });
     }
 }
