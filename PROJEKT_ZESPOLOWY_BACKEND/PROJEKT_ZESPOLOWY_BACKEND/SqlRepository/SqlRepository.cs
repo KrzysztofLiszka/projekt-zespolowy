@@ -18,7 +18,11 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.SqlRepository
 
         public async Task<List<T>> GetAllAsync<T>() where T : BaseEntity
         {
-            return await _context.Set<T>().ToListAsync();
+            var query = _context.Set<T>().AsQueryable();
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await GetAsync<User>(userId);
+            if (user != null && user.WorkplaceUuid != null) query = query.Where(x => x.WorkplaceUuid == user.WorkplaceUuid);
+            return await query.ToListAsync();
         }
         public async Task<List<T>> GetAllViewAsync<T>() where T : class
         {
@@ -38,6 +42,9 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.SqlRepository
         }
         public async Task AddAsync<T>(T entity) where T : BaseEntity
         {
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await GetAsync<User>(userId);
+            if (user != null) entity.WorkplaceUuid = user.WorkplaceUuid;
             entity.CreatedBy = _currentUserService.GetCurrentUserId();
             entity.CreatedAt = DateTime.UtcNow;
             entity.LastUpdatedAt = DateTime.UtcNow;

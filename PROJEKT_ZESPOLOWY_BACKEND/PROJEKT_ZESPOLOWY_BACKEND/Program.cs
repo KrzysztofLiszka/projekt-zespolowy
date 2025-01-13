@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PROJEKT_ZESPOLOWY_BACKEND.Controllers;
 using PROJEKT_ZESPOLOWY_BACKEND.Data;
 using PROJEKT_ZESPOLOWY_BACKEND.Profiles;
 using PROJEKT_ZESPOLOWY_BACKEND.Services;
@@ -71,6 +72,7 @@ builder.Services.AddScoped<IAssignmentService, AssignmentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<IVisualizationService, VisualizationService>();
+builder.Services.AddScoped<DatabaseSeeder>();
 
 
 builder.Services.AddAutoMapper(typeof(WorkplaceProfile));

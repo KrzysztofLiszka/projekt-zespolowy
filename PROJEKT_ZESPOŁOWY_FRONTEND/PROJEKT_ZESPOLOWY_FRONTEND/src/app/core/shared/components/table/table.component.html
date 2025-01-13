@@ -16,7 +16,7 @@
                         {{ row[column] }}
                     </span>
                     <span *ngIf="column === 'createdAt' || column==='lastUpdatedAt' || column==='date'">
-                        {{ row[column] | date: 'yyyy-MM-dd HH:mm:ss' }}
+                        {{ row[column] | date: 'yyyy-MM-dd' }}
                     </span>
                 </ng-container>
                 <ng-container *ngIf="column === 'actions'">

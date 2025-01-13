@@ -61,7 +61,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
 
         public async Task<List<WorkplaceTableDto>> GetWorkplaces()
         {
-            var workplaces = await _sqlRepository.GetAllAsync<Workplace>();
+            var workplaces = await _sqlRepository.GetQueryable<Workplace>().ToListAsync();
             var workplacesTableDto = _mapper.Map<List<WorkplaceTableDto>>(workplaces);
             return workplacesTableDto;
         }

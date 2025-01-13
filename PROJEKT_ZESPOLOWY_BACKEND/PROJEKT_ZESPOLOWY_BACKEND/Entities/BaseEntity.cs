@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public Guid Uuid { get; set; } = Guid.NewGuid();
         public Guid CreatedBy { get; set; } = Guid.NewGuid();
+        public Guid? WorkplaceUuid { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime LastUpdatedAt { get; set; }
     }

@@ -8,7 +8,7 @@ import { NotificationsService } from './notifications.service';
 })
 export class BaseApiService {
 
-    private readonly apiUrl = 'https://localhost:44331/api';
+    private readonly apiUrl = 'https://localhost:7218/api';
 
     constructor(private httpClient: HttpClient, protected notificationsService: NotificationsService) { }
 
