@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from './base-api.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -39,6 +39,18 @@ export class AuthService extends BaseApiService {
 
     getUserProfilePicture(userId: string): Observable<any> {
         return this.get<any>(`Auth/GetUserProfilePicture/${userId}`);
+    }
+
+    deleteUser(userId: string): Observable<any> {
+        return this.delete<any>(`Auth/${userId}`).pipe(
+            tap(() => this.notificationsService.showTypicalSuccessNotification())
+        );
+    }
+
+    updateExternalUser(updatedUser: any): Observable<any> {
+        return this.post<any>('Auth/UpdateExternalUser', updatedUser).pipe(
+            tap(() => this.notificationsService.showTypicalSuccessNotification())
+        );
     }
 }
 

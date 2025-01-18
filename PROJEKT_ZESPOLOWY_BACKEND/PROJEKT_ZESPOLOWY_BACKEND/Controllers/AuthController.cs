@@ -110,7 +110,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             if (currentUser.RoleName == Roles.SystemAdmin)
             {
                 await _sqlRepository.DeleteAsync<User>(uuid);
-                return Ok("User deleted from system!");
+                return Ok(new { message = "Schedulet added successfully." });
 
             }
             else if (currentUser.RoleName == Roles.WorkspaceOwner)
@@ -135,7 +135,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             user.HourlyRate = updatedUser.HourlyRate;
             user.RoleName = updatedUser.RoleName;
             await _sqlRepository.UpdateAsync(user);
-            return Ok();
+            return Ok(new { message = "User registered" });
         }
 
         [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]

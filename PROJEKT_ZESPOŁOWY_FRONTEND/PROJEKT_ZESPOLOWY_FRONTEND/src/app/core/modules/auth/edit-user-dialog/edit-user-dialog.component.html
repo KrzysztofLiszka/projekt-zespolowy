@@ -1,0 +1,38 @@
+<div class="dialog-container">
+    <h2>Edytuj użytkownika</h2>
+    <form [formGroup]="editUserForm">
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Nazwa</mat-label>
+            <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Nazwisko</mat-label>
+            <input matInput formControlName="surname" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Stawka godzinowa</mat-label>
+            <input matInput type="number" formControlName="hourlyRate" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Rola</mat-label>
+            <mat-select formControlName="roleName">
+                <mat-option *ngFor="let role of roles" [value]="role.value">
+                    {{ role.label }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <div class="dialog-actions">
+        <button mat-button (click)="onCancel()">Anuluj</button>
+        <button mat-raised-button class="save-button" (click)="onSave()">Zapisz</button>
+    </div>
+</div>
