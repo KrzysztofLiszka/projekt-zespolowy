@@ -129,13 +129,14 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
         {
             var user = await _sqlRepository.GetAsync<User>(updatedUser.Uuid);
             if (user == null) return NotFound("User (to update) with this Id was not found!");
+            var englishRoleName = Roles.GetEnglishRoleNameFromPolish(updatedUser.RoleName);
             user.Email = updatedUser.Email;
             user.Surname = updatedUser.Surname;
             user.Name = updatedUser.Name;
             user.HourlyRate = updatedUser.HourlyRate;
-            user.RoleName = updatedUser.RoleName;
+            user.RoleName = englishRoleName;
             await _sqlRepository.UpdateAsync(user);
-            return Ok(new { message = "User registered" });
+            return Ok(new { message = "User registered", user });
         }
 
         [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]

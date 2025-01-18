@@ -25,25 +25,20 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class EditUserDialogComponent {
     editUserForm: FormGroup;
-    roles: any[] = [
-        { value: "SystemAdmin", label: "Admin systemu" },
-        { value: "WorkspaceOwner", label: "Właściciel firmy" },
-        { value: "Accountant", label: "Księgowy" },
-        { value: "Worker", label: "Członek projektu" }
-    ];
-
+    roles: any[] = [{ name: "Admin systemu" }, { name: "Właściciel firmy" }, { name: "Manager projektu" }, { name: "Członek projektu" }, { name: "Księgowa" }];
     constructor(
         private fb: FormBuilder,
         public dialogRef: MatDialogRef<EditOrAddScheduleComponent>,
         @Inject(MAT_DIALOG_DATA) public data: { user: any; isEdit: boolean }
     ) {
+
         this.editUserForm = this.fb.group({
             uuid: [data.user?.uuid || ''],
-            name: [data.user?.name || ''],
-            surname: [data.user?.surname || ''],
-            hourlyRate: [data.user?.hourlyRate || 0],
-            email: [data.user?.email || ''],
-            roleName: [data.user?.roleName || '']
+            name: [data.user?.name || '', Validators.required],
+            surname: [data.user?.surname || '', Validators.required],
+            hourlyRate: [data.user?.hourlyRate || 0, [Validators.required, Validators.min(0)]],
+            email: [data.user?.email || '', [Validators.required, Validators.email]],
+            roleName: [data.user?.roleName, Validators.required]
         });
     }
 
