@@ -10,5 +10,5 @@ import { TableComponent } from '../../../shared/components/table/table.component
 export class RolesPageComponent {
     displayedColumns: string[] = ['name'];
     displayedHeaders: string[] = ['Nazwa roli'];
-    dataSource: any[] = [{ name: "Admin systemu" }, { name: "Właściciel firmy" }, { name: "Członek projektu" }, { name: "Księgowy" }];
+    dataSource: any[] = [{ name: "Admin systemu" }, { name: "Właściciel firmy" }, { name: "Członek projektu" }, { name: "Księgowość" }];
 }

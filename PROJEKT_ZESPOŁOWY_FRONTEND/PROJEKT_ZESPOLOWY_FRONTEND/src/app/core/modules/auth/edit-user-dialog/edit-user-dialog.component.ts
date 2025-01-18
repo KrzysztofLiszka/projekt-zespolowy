@@ -25,7 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class EditUserDialogComponent {
     editUserForm: FormGroup;
-    roles: any[] = [{ name: "Admin systemu" }, { name: "Właściciel firmy" }, { name: "Manager projektu" }, { name: "Członek projektu" }, { name: "Księgowa" }];
+    roles: any[] = [{ name: "Admin systemu" }, { name: "Właściciel firmy" }, { name: "Manager projektu" }, { name: "Członek projektu" }, { name: "Księgowość" }];
     constructor(
         private fb: FormBuilder,
         public dialogRef: MatDialogRef<EditOrAddScheduleComponent>,

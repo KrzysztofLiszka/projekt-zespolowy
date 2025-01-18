@@ -11,7 +11,7 @@
         {
             { "Admin systemu", SystemAdmin },
             { "Właściciel firmy", WorkspaceOwner },
-            { "Księgowy", Accountant },
+            { "Księgowość", Accountant },
             { "Członek projektu", Worker }
         };
 

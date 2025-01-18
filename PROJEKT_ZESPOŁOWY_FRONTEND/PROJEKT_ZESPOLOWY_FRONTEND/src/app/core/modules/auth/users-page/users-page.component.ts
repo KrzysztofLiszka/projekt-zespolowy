@@ -21,7 +21,7 @@ export class UsersPageComponent implements OnInit {
     roleMap: { [key: string]: string } = {
         SystemAdmin: "Admin systemu",
         WorkspaceOwner: "Właściciel firmy",
-        Accountant: "Księgowy",
+        Accountant: "Księgowość",
         Worker: "Członek projektu"
     };
 

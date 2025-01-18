@@ -19,8 +19,8 @@ export class SidebarComponent implements OnInit {
 
     menuItems: any[] = [
         { text: "TABLICA", redirectTo: "home", iconClass: "fas fa-home fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
-        { text: "WSPÓŁPRACOWNICY", redirectTo: "coworkers", iconClass: "fas fa-users fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
-        { text: "HARMONOGRAM", redirectTo: "schedule", iconClass: "fas fa-calendar-check fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
+        { text: "WSPÓŁPRACOWNICY", redirectTo: "coworkers", iconClass: "fas fa-users fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER, Roles.ACCOUNTANT] },
+        { text: "HARMONOGRAM", redirectTo: "schedule", iconClass: "fas fa-calendar-check fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER, Roles.ACCOUNTANT] },
         { text: "SPĘDZONY CZAS", redirectTo: "time-spents", iconClass: "fas fa-clock fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER, Roles.ACCOUNTANT] },
         { text: "DOKUMENTACJE", redirectTo: "documentations", iconClass: "fas fa-file-alt fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
         { text: "WIZUALIZACJE", redirectTo: "visualizations", iconClass: "fas fa-chart-line fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
