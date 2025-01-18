@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PROJEKT_ZESPOLOWY_BACKEND.Constants;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 using PROJEKT_ZESPOLOWY_BACKEND.Services;
 using PROJEKT_ZESPOLOWY_BACKEND.SqlRepository;
+using System;
 using System.Reflection;
 
 namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
@@ -71,12 +73,69 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(new { message = "User registered" });
         }
 
-        [Authorize(Roles = $"{Roles.SystemAdmin}")]
+        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.WorkspaceOwner}")]
         [HttpGet("all-users")]
         public async Task<ActionResult> GetUsers()
         {
-            var result = await _sqlRepository.GetAllAsync<User>();
-            return Ok(result);
+            var currentUserId = _currentUserService.GetCurrentUserId();
+            var currentUser = await _sqlRepository.GetAsync<User>(currentUserId);
+            if (currentUser == null)
+            {
+                return NotFound("User (current) with this Id was not found!");
+            }
+            if (currentUser.RoleName == Roles.SystemAdmin)
+            {
+                var result = await _sqlRepository.GetAllAsync<User>();
+                return Ok(result);
+
+            }
+            else if (currentUser.RoleName == Roles.WorkspaceOwner)
+            {
+                var result = await _sqlRepository.GetQueryable<User>().Where(x => x.WorkplaceUuid == currentUser.WorkplaceUuid).ToListAsync();
+                return Ok(result);
+            }
+            return Unauthorized();
+        }
+
+        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.WorkspaceOwner}")]
+        [HttpDelete("{uuid:guid}")]
+        public async Task<ActionResult> DeleteUser(Guid uuid)
+        {
+            var currentUserId = _currentUserService.GetCurrentUserId();
+            var currentUser = await _sqlRepository.GetAsync<User>(currentUserId);
+            if (currentUser == null)
+            {
+                return NotFound("User (current) with this Id was not found!");
+            }
+            if (currentUser.RoleName == Roles.SystemAdmin)
+            {
+                await _sqlRepository.DeleteAsync<User>(uuid);
+                return Ok("User deleted from system!");
+
+            }
+            else if (currentUser.RoleName == Roles.WorkspaceOwner)
+            {
+                var userToUpdate = await _sqlRepository.GetAsync<User>(uuid);
+                if(userToUpdate == null) return NotFound("User (to update) with this Id was not found!");
+                userToUpdate.WorkplaceUuid = null;
+                await _sqlRepository.UpdateAsync(userToUpdate);
+            }
+            return Unauthorized();
+        }
+
+        [HttpPost("UpdateExternalUser")]
+        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.WorkspaceOwner}")]
+        public async Task<IActionResult> UpdateUser(UpdateExternalUserDto updatedUser)
+        {
+            var user = await _sqlRepository.GetAsync<User>(updatedUser.Uuid);
+            if (user == null) return NotFound("User (to update) with this Id was not found!");
+            user.Email = updatedUser.Email;
+            user.Surname = updatedUser.Surname;
+            user.Name = updatedUser.Name;
+            user.HourlyRate = updatedUser.HourlyRate;
+            user.RoleName = updatedUser.RoleName;
+            await _sqlRepository.UpdateAsync(user);
+            return Ok();
         }
 
         [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.Worker}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]

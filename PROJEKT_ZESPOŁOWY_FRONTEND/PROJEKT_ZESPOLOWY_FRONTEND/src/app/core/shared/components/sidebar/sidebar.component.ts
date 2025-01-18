@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
         { text: "DOKUMENTACJE", redirectTo: "documentations", iconClass: "fas fa-file-alt fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
         { text: "WIZUALIZACJE", redirectTo: "visualizations", iconClass: "fas fa-chart-line fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
         { text: "ROLE", redirectTo: "roles", iconClass: "fas fa-cogs fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKSPACE_OWNER] },
-        { text: "UŻYTKOWNICY", redirectTo: "users", iconClass: "fas fa-user-cog fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN] },
+        { text: "KONTA", redirectTo: "users", iconClass: "fas fa-user-cog fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN] },
         { text: "WYPŁATY", redirectTo: "payments", iconClass: "fas fa-wallet fa-lg", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.ACCOUNTANT, Roles.WORKSPACE_OWNER] },
     ];
 
