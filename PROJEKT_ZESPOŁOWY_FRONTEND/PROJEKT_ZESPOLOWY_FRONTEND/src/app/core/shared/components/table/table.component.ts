@@ -23,7 +23,9 @@ export class TableComponent {
     @Input() displayAddButton: boolean = false;
     @Input() isRedirect: boolean = false;
     @Input() displayEdit: boolean = true;
+    @Input() tableSmaller: boolean = false;
     selectedRoles: string[] = [];
+
 
     @Output() addClicked = new EventEmitter<any>();
     @Output() editClicked = new EventEmitter<any>();

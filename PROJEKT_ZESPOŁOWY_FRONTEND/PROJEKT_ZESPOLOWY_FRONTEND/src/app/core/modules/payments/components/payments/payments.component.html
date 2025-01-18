@@ -15,8 +15,11 @@
         </mat-form-field>
         <mat-icon (click)="subscribePayments()">search</mat-icon>
     </div>
-    <app-table [dataSource]="dataSource" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders"
-        pageTitle="Wypłaty" />
+    <div class="table-container">
+        <app-table [dataSource]="dataSource" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders"
+            pageTitle="Wypłaty" [tableSmaller]="true" />
+    </div>
+
     <div class="paginator">
         <button [disabled]="true">«</button>
         <button [disabled]="true">‹</button>
