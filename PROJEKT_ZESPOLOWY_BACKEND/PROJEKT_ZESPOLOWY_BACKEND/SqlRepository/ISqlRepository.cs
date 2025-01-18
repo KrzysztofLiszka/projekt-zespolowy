@@ -1,4 +1,5 @@
-﻿using PROJEKT_ZESPOLOWY_BACKEND.Entities;
+﻿using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
+using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 
 namespace PROJEKT_ZESPOLOWY_BACKEND.SqlRepository
 {
@@ -12,6 +13,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.SqlRepository
         Task AddAsync<T>(T entity) where T : BaseEntity;
         Task UpdateAsync<T>(T entity) where T : BaseEntity, new();
         Task DeleteAsync<T>(Guid uuid) where T : BaseEntity;
+        Task<PaginatedResult<T>> GetPaginatedAsync<T>(int pageNumber) where T : BaseEntity;
         Task SaveChangesAsync();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PROJEKT_ZESPOLOWY_BACKEND.Data;
+using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 using PROJEKT_ZESPOLOWY_BACKEND.Services;
 
@@ -75,6 +76,28 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.SqlRepository
             await _context.SaveChangesAsync();
         }
 
+        public async Task<PaginatedResult<T>> GetPaginatedAsync<T>(int pageNumber) where T : BaseEntity
+        {
+            int pageSize = 100;
+            var query = _context.Set<T>().AsQueryable();
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await GetAsync<User>(userId);
+            if (user != null && user.WorkplaceUuid != null) query = query.Where(x => x.WorkplaceUuid == user.WorkplaceUuid);
+
+            var totalItems = await query.CountAsync();
+            var items = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PaginatedResult<T>
+            {
+                Items = items,
+                TotalItems = totalItems,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+        }
 
         public async Task SaveChangesAsync()
         {

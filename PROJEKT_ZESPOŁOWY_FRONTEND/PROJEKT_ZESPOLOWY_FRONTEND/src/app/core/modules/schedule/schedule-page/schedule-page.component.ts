@@ -4,10 +4,11 @@ import { TableComponent } from '../../../shared/components/table/table.component
 import { EditOrAddScheduleComponent } from '../edit-or-add-schedule/edit-or-add-schedule.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-schedule-page',
-    imports: [TableComponent],
+    imports: [TableComponent, CommonModule],
     templateUrl: './schedule-page.component.html',
     styleUrl: './schedule-page.component.scss'
 })
@@ -74,4 +75,8 @@ export class SchedulePageComponent {
             })
         );
     }
+
+    pageNumber: number = 1;
+    pageSize: number = 1;
+    totalPages: number = 1;
 }

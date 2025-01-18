@@ -53,6 +53,13 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Controllers
             return Ok(schedules);
         }
 
+        [HttpGet("paginated/{pageNumber}")]
+        public async Task<IActionResult> GetPaginatedSchedules([FromRoute] int pageNumber)
+        {
+            var schedules = await _sqlRepository.GetPaginatedAsync<Schedule>(pageNumber);
+            return Ok(schedules);
+        }
+
         [HttpDelete("{uuid:guid}")]
         public async Task<IActionResult> DeleteSchedule([FromRoute] Guid uuid)
         {

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PROJEKT_ZESPOLOWY_BACKEND.DTOs;
 using PROJEKT_ZESPOLOWY_BACKEND.Entities;
 using PROJEKT_ZESPOLOWY_BACKEND.SqlRepository;
@@ -46,7 +47,7 @@ namespace PROJEKT_ZESPOLOWY_BACKEND.Services
 
         public async Task<List<AssignmentTableDto>> GetAssignments()
         {
-            var assignments = await _sqlRepository.GetAllAsync<Assignment>();
+            var assignments = await _sqlRepository.GetQueryable<Assignment>().OrderByDescending(a => a.CreatedAt).Take(20).ToListAsync();
             var assignmentsTable = _mapper.Map<List<AssignmentTableDto>>(assignments);
             return assignmentsTable;
         }

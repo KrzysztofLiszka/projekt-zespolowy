@@ -37,3 +37,38 @@ mat-icon {
         transform: scale(1.8);
     }
 }
+
+.paginator {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+        font-size: 13pt;
+        background-color: #535353;
+        color: white;
+        cursor: pointer;
+        border: none;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.paginator button.active {
+    background-color: rgb(78, 206, 245);
+    color: black;
+}
+
+.items-counter {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-top: 20px;
+}

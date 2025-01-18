@@ -23,4 +23,5 @@ export class CoworkersPageComponent implements OnInit {
     private subscribeCoworkeres(): void {
         this.coworkersService.getAllItems().subscribe(res => { this.dataSource = res })
     }
+    
 }

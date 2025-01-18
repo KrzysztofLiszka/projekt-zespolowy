@@ -1,4 +1,15 @@
 <div class="container">
     <app-table [dataSource]="dataSource" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders"
         pageTitle="WSPÓŁPRACOWNICY" />
+    <div class="paginator">
+        <button [disabled]="true">«</button>
+        <button [disabled]="true">‹</button>
+
+        <ng-container>
+            <button [class.active]="true">{{ 1 }}</button>
+        </ng-container>
+
+        <button [disabled]="true">›</button>
+        <button [disabled]="true">»</button>
+    </div>
 </div>
